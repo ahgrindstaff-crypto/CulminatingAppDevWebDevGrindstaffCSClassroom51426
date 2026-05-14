@@ -1,0 +1,2368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mr. G's CS Suite — Master Reference 2025–2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Share+Tech+Mono&family=Exo+2:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:        #04080f;
+  --bg2:       #08101e;
+  --bg3:       rgba(10,22,44,0.97);
+  --cyan:      #00dcff;
+  --cyan-hi:   #70efff;
+  --amber:     #ffb700;
+  --green:     #00ff88;
+  --purple:    #c084fc;
+  --magenta:   #f059f0;
+  --red:       #ff3860;
+  --text:      #b8d0e8;
+  --text-hi:   #e8f4ff;
+  --text-dim:  #4a6a8a;
+  --border:    rgba(0,220,255,0.14);
+
+  /* Room color variables */
+  --green-room:   #00ff88;
+  --purple-room:  #c084fc;
+  --cyan-room:    #00dcff;
+  --amber-room:   #ffb700;
+  --magenta-room: #f059f0;
+  --eoy-room:     #70efff;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Exo 2', sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  display: flex;
+  min-height: 100vh;
+  background-image:
+    linear-gradient(rgba(0,220,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,220,255,0.025) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+body::after {
+  content: '';
+  position: fixed; inset: 0;
+  background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.03) 3px, rgba(0,0,0,0.03) 4px);
+  pointer-events: none; z-index: 9999;
+}
+
+/* ── SIDEBAR ── */
+#sidebar {
+  position: fixed; top: 0; left: 0;
+  width: 270px; height: 100vh;
+  background: rgba(4,8,16,0.98);
+  border-right: 1px solid var(--border);
+  overflow-y: auto; z-index: 100;
+  display: flex; flex-direction: column;
+  padding-bottom: 40px;
+}
+
+#sidebar::-webkit-scrollbar { width: 4px; }
+#sidebar::-webkit-scrollbar-track { background: transparent; }
+#sidebar::-webkit-scrollbar-thumb { background: rgba(0,220,255,0.2); border-radius: 2px; }
+
+.sidebar-brand {
+  padding: 22px 20px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.sidebar-brand .logo {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  color: var(--cyan-hi);
+  text-shadow: 0 0 12px rgba(112,239,255,0.4);
+  line-height: 1.4;
+}
+
+.sidebar-brand .sub {
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  margin-top: 4px;
+  letter-spacing: 0.06em;
+}
+
+.nav-section {
+  padding: 14px 20px 4px;
+}
+
+.nav-section-label {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.55rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 8px;
+}
+
+.nav-link {
+  display: flex; align-items: center; gap: 9px;
+  padding: 7px 10px;
+  border-radius: 6px;
+  color: var(--text-dim);
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  transition: all 0.16s;
+  margin-bottom: 2px;
+}
+
+.nav-link:hover { color: var(--text-hi); background: rgba(0,220,255,0.05); }
+
+.nav-link .dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.nav-link.green  .dot { background: var(--green-room); box-shadow: 0 0 5px var(--green-room); }
+.nav-link.purple .dot { background: var(--purple-room); box-shadow: 0 0 5px var(--purple-room); }
+.nav-link.cyan   .dot { background: var(--cyan-room); box-shadow: 0 0 5px var(--cyan-room); }
+.nav-link.amber  .dot { background: var(--amber-room); box-shadow: 0 0 5px var(--amber-room); }
+.nav-link.mag    .dot { background: var(--magenta-room); box-shadow: 0 0 5px var(--magenta-room); }
+.nav-link.eoy    .dot { background: var(--eoy-room); box-shadow: 0 0 5px var(--eoy-room); }
+.nav-link.js     .dot { background: #f7df1e; box-shadow: 0 0 5px #f7df1e; }
+.nav-link.ct     .dot { background: #ff9944; box-shadow: 0 0 5px #ff9944; }
+.nav-link.code   .dot { background: var(--text-dim); }
+
+/* ── MAIN CONTENT ── */
+#main {
+  margin-left: 270px;
+  flex: 1;
+  max-width: calc(100% - 270px);
+}
+
+/* ── HERO ── */
+.hero {
+  padding: 60px 60px 50px;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 100% at 70% 50%, rgba(0,220,255,0.04) 0%, transparent 70%);
+}
+
+.hero-eyebrow {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.35em;
+  color: var(--amber);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.hero-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(1.8rem, 3.5vw, 3rem);
+  font-weight: 900;
+  color: var(--cyan-hi);
+  text-shadow: 0 0 30px rgba(112,239,255,0.35);
+  line-height: 1.1;
+  margin-bottom: 10px;
+}
+
+.hero-sub {
+  font-size: 1.05rem;
+  color: var(--text);
+  max-width: 700px;
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+.hero-badges {
+  display: flex; gap: 10px; flex-wrap: wrap;
+}
+
+.hbadge {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.63rem;
+  letter-spacing: 0.12em;
+  padding: 5px 14px;
+  border-radius: 100px;
+  border: 1px solid;
+}
+
+.hbadge.g { border-color: var(--green); color: var(--green); }
+.hbadge.p { border-color: var(--purple); color: var(--purple); }
+.hbadge.c { border-color: var(--cyan); color: var(--cyan); }
+.hbadge.a { border-color: var(--amber); color: var(--amber); }
+.hbadge.m { border-color: var(--magenta); color: var(--magenta); }
+.hbadge.j { border-color: #f7df1e; color: #f7df1e; }
+.hbadge.o { border-color: #ff9944; color: #ff9944; }
+
+/* ── SECTIONS ── */
+.section {
+  padding: 50px 60px;
+  border-bottom: 1px solid var(--border);
+}
+
+.section-header {
+  display: flex; align-items: center; gap: 16px;
+  margin-bottom: 28px;
+}
+
+.section-icon {
+  font-size: 1.8rem;
+  flex-shrink: 0;
+}
+
+.section-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.section-desc {
+  font-size: 0.9rem;
+  color: var(--text-dim);
+  margin-top: 3px;
+}
+
+/* ── TOOL CARDS (suite overview) ── */
+.tool-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 18px;
+  margin-top: 20px;
+}
+
+.tool-card {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 22px 20px;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.18s;
+}
+
+.tool-card:hover { transform: translateY(-2px); }
+
+.tool-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 2px;
+}
+
+.tool-card.green::before  { background: linear-gradient(90deg, transparent, var(--green-room), transparent); }
+.tool-card.purple::before { background: linear-gradient(90deg, transparent, var(--purple-room), transparent); }
+.tool-card.cyan::before   { background: linear-gradient(90deg, transparent, var(--cyan-room), transparent); }
+.tool-card.amber::before  { background: linear-gradient(90deg, transparent, var(--amber-room), transparent); }
+.tool-card.mag::before    { background: linear-gradient(90deg, transparent, var(--magenta-room), transparent); }
+.tool-card.js::before     { background: linear-gradient(90deg, transparent, #f7df1e, transparent); }
+.tool-card.ct::before     { background: linear-gradient(90deg, transparent, #ff9944, transparent); }
+.tool-card.eoy::before    { background: linear-gradient(90deg, transparent, var(--eoy-room), transparent); }
+
+.tc-badge {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  padding: 3px 10px;
+  border-radius: 100px;
+  display: inline-block;
+  margin-bottom: 12px;
+}
+
+.tool-card.green  .tc-badge { color: var(--green-room); border: 1px solid rgba(0,255,136,0.4); }
+.tool-card.purple .tc-badge { color: var(--purple-room); border: 1px solid rgba(192,132,252,0.4); }
+.tool-card.cyan   .tc-badge { color: var(--cyan-room); border: 1px solid rgba(0,220,255,0.4); }
+.tool-card.amber  .tc-badge { color: var(--amber-room); border: 1px solid rgba(255,183,0,0.4); }
+.tool-card.mag    .tc-badge { color: var(--magenta-room); border: 1px solid rgba(240,89,240,0.4); }
+.tool-card.js     .tc-badge { color: #f7df1e; border: 1px solid rgba(247,223,30,0.4); }
+.tool-card.ct     .tc-badge { color: #ff9944; border: 1px solid rgba(255,153,68,0.4); }
+.tool-card.eoy    .tc-badge { color: var(--eoy-room); border: 1px solid rgba(112,239,255,0.4); }
+
+.tc-name {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-hi);
+  margin-bottom: 8px;
+}
+
+.tc-desc {
+  font-size: 0.82rem;
+  color: var(--text);
+  line-height: 1.65;
+}
+
+.tc-topics {
+  margin-top: 12px;
+  display: flex; gap: 6px; flex-wrap: wrap;
+}
+
+.tc-topic {
+  font-size: 0.68rem;
+  color: var(--text-dim);
+  background: rgba(0,220,255,0.05);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 2px 8px;
+}
+
+/* ── ESCAPE ROOM DETAIL ── */
+.er-header {
+  border-radius: 14px;
+  padding: 28px 30px;
+  margin-bottom: 28px;
+  position: relative;
+  overflow: hidden;
+}
+
+.er-header.green  { background: rgba(0,255,136,0.05); border: 1px solid rgba(0,255,136,0.2); }
+.er-header.purple { background: rgba(192,132,252,0.05); border: 1px solid rgba(192,132,252,0.2); }
+.er-header.cyan   { background: rgba(0,220,255,0.05); border: 1px solid rgba(0,220,255,0.2); }
+.er-header.amber  { background: rgba(255,183,0,0.05); border: 1px solid rgba(255,183,0,0.2); }
+.er-header.mag    { background: rgba(240,89,240,0.05); border: 1px solid rgba(240,89,240,0.2); }
+.er-header.eoy    { background: rgba(112,239,255,0.05); border: 1px solid rgba(112,239,255,0.2); }
+
+.er-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+}
+
+.er-header.green  .er-title { color: var(--green-room); text-shadow: 0 0 18px rgba(0,255,136,0.35); }
+.er-header.purple .er-title { color: var(--purple-room); text-shadow: 0 0 18px rgba(192,132,252,0.35); }
+.er-header.cyan   .er-title { color: var(--cyan-room); text-shadow: 0 0 18px rgba(0,220,255,0.35); }
+.er-header.amber  .er-title { color: var(--amber-room); text-shadow: 0 0 18px rgba(255,183,0,0.35); }
+.er-header.mag    .er-title { color: var(--magenta-room); text-shadow: 0 0 18px rgba(240,89,240,0.35); }
+.er-header.eoy    .er-title { color: var(--eoy-room); text-shadow: 0 0 18px rgba(112,239,255,0.35); }
+
+.er-subtitle { font-size: 0.85rem; color: var(--text); margin-bottom: 14px; }
+
+.er-meta {
+  display: flex; gap: 20px; flex-wrap: wrap;
+}
+
+.er-meta-item {
+  font-size: 0.78rem;
+  color: var(--text-dim);
+}
+
+.er-meta-item strong { color: var(--text); }
+
+/* ── ROOM LIST TABLE ── */
+.room-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 28px;
+  font-size: 0.85rem;
+}
+
+.room-table th {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+.room-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(0,220,255,0.06);
+  vertical-align: top;
+}
+
+.room-table tr:last-child td { border-bottom: none; }
+
+.room-table tr:hover td { background: rgba(0,220,255,0.02); }
+
+.rn { 
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+
+.room-name { color: var(--text-hi); font-weight: 600; }
+
+.ct-tag {
+  font-size: 0.68rem;
+  padding: 2px 8px;
+  border-radius: 100px;
+  display: inline-block;
+  margin: 1px;
+}
+
+.ct-tag.decomp  { background: rgba(0,220,255,0.08); color: var(--cyan); border: 1px solid rgba(0,220,255,0.2); }
+.ct-tag.pattern { background: rgba(192,132,252,0.08); color: var(--purple); border: 1px solid rgba(192,132,252,0.2); }
+.ct-tag.abstrac { background: rgba(255,183,0,0.08); color: var(--amber); border: 1px solid rgba(255,183,0,0.2); }
+.ct-tag.algo    { background: rgba(0,255,136,0.08); color: var(--green); border: 1px solid rgba(0,255,136,0.2); }
+
+/* ── CODE BLOCKS ── */
+.code-section {
+  background: rgba(4,8,16,0.8);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 18px 0;
+}
+
+.code-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 16px;
+  background: rgba(0,220,255,0.04);
+  border-bottom: 1px solid var(--border);
+}
+
+.code-label {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  color: var(--cyan);
+  text-transform: uppercase;
+}
+
+.code-lang {
+  font-size: 0.68rem;
+  color: var(--text-dim);
+}
+
+.code-body {
+  padding: 18px 20px;
+  overflow-x: auto;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.82rem;
+  line-height: 1.7;
+  color: var(--text);
+  white-space: pre;
+}
+
+/* Syntax highlighting */
+.kw  { color: #c084fc; }     /* keywords: const, let, function, if, else, return */
+.str { color: #86efac; }     /* strings */
+.num { color: #fbbf24; }     /* numbers */
+.cmt { color: #4a6a8a; font-style: italic; } /* comments */
+.fn  { color: #60a5fa; }     /* function names */
+.prop{ color: #34d399; }     /* property names */
+.val { color: #f97316; }     /* values */
+
+/* ── ANNOTATION BLOCKS ── */
+.annotation {
+  background: rgba(0,220,255,0.03);
+  border: 1px solid rgba(0,220,255,0.1);
+  border-left: 3px solid var(--cyan);
+  border-radius: 0 8px 8px 0;
+  padding: 14px 18px;
+  margin: 14px 0;
+  font-size: 0.88rem;
+}
+
+.annotation .ann-label {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  color: var(--cyan);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.annotation.amber {
+  border-left-color: var(--amber);
+  border-color: rgba(255,183,0,0.1);
+  background: rgba(255,183,0,0.03);
+}
+.annotation.amber .ann-label { color: var(--amber); }
+
+.annotation.green {
+  border-left-color: var(--green);
+  border-color: rgba(0,255,136,0.1);
+  background: rgba(0,255,136,0.03);
+}
+.annotation.green .ann-label { color: var(--green); }
+
+/* ── LINE BY LINE TABLE ── */
+.lbl-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 14px 0;
+  font-size: 0.82rem;
+}
+
+.lbl-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid rgba(0,220,255,0.06);
+  vertical-align: top;
+}
+
+.lbl-table tr:last-child td { border-bottom: none; }
+.lbl-table tr:hover td { background: rgba(0,220,255,0.02); }
+
+.lbl-table .lcode {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.78rem;
+  color: var(--cyan-hi);
+  white-space: nowrap;
+  padding-right: 20px;
+  min-width: 200px;
+}
+
+.lbl-table .lexpl { color: var(--text); }
+
+/* ── Q & A BLOCKS (EOY Questions) ── */
+.qa-block {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px 20px;
+  margin-bottom: 12px;
+}
+
+.qa-room {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.16em;
+  color: var(--amber);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.qa-q {
+  font-size: 0.9rem;
+  color: var(--text-hi);
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.qa-choices {
+  display: flex; flex-direction: column; gap: 5px;
+  margin-bottom: 10px;
+}
+
+.qa-choice {
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid transparent;
+}
+
+.qa-choice.correct {
+  color: var(--green);
+  background: rgba(0,255,136,0.07);
+  border-color: rgba(0,255,136,0.25);
+}
+
+.qa-hint {
+  font-size: 0.78rem;
+  color: var(--amber);
+  background: rgba(255,183,0,0.05);
+  border-left: 2px solid rgba(255,183,0,0.4);
+  padding: 5px 10px;
+  border-radius: 0 4px 4px 0;
+}
+
+/* ── CALLOUT BOXES ── */
+.callout {
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin: 20px 0;
+  display: flex; gap: 14px; align-items: flex-start;
+}
+
+.callout-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+
+.callout-content .callout-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  font-weight: 700;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+}
+
+.callout-content p { font-size: 0.88rem; line-height: 1.65; }
+
+.callout.info { background: rgba(0,220,255,0.05); border: 1px solid rgba(0,220,255,0.18); }
+.callout.info .callout-title { color: var(--cyan); }
+
+.callout.warning { background: rgba(255,183,0,0.05); border: 1px solid rgba(255,183,0,0.2); }
+.callout.warning .callout-title { color: var(--amber); }
+
+.callout.success { background: rgba(0,255,136,0.05); border: 1px solid rgba(0,255,136,0.2); }
+.callout.success .callout-title { color: var(--green); }
+
+/* ── FLOW STEPS ── */
+.flow-steps {
+  display: flex; flex-direction: column; gap: 14px;
+  margin: 18px 0;
+}
+
+.flow-step {
+  display: flex; gap: 16px; align-items: flex-start;
+}
+
+.flow-num {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--bg);
+  background: var(--cyan);
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-top: 2px;
+}
+
+.flow-content .flow-title {
+  font-weight: 700;
+  color: var(--text-hi);
+  font-size: 0.92rem;
+  margin-bottom: 3px;
+}
+
+.flow-content p { font-size: 0.85rem; color: var(--text); }
+
+/* ── TWO COLUMN ── */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 16px 0; }
+
+/* ── DIVIDER ── */
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  margin: 30px 0;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  #sidebar { width: 220px; }
+  #main { margin-left: 220px; max-width: calc(100% - 220px); }
+  .section { padding: 36px 28px; }
+  .hero { padding: 36px 28px; }
+  .two-col { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 680px) {
+  #sidebar { display: none; }
+  #main { margin-left: 0; max-width: 100%; }
+}
+
+/* ── PRINT ── */
+@media print {
+  #sidebar { display: none; }
+  #main { margin-left: 0; max-width: 100%; }
+  body { background: white; color: black; }
+  .code-body { white-space: pre-wrap; }
+}
+
+/* Inline code */
+code {
+  font-family: 'Share Tech Mono', monospace;
+  background: rgba(0,220,255,0.08);
+  color: var(--cyan-hi);
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-size: 0.88em;
+}
+
+h3 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-hi);
+  margin: 22px 0 10px;
+  letter-spacing: 0.05em;
+}
+
+h4 {
+  font-weight: 700;
+  color: var(--cyan);
+  font-size: 0.88rem;
+  margin: 18px 0 8px;
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 0.08em;
+  font-size: 0.78rem;
+}
+
+p { margin-bottom: 12px; }
+
+ul, ol { padding-left: 22px; margin-bottom: 12px; }
+li { margin-bottom: 5px; font-size: 0.9rem; }
+
+strong { color: var(--text-hi); font-weight: 700; }
+
+.tag-line {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  letter-spacing: 0.12em;
+  margin-bottom: 16px;
+}
+
+.big-num {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2.4rem;
+  font-weight: 900;
+  color: var(--cyan-hi);
+  line-height: 1;
+}
+
+.stat-row {
+  display: flex; gap: 32px; flex-wrap: wrap;
+  margin: 20px 0;
+}
+
+.stat-item { text-align: center; }
+.stat-item .big-num { margin-bottom: 4px; }
+.stat-item .stat-lbl {
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-family: 'Orbitron', sans-serif;
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════════
+     SIDEBAR NAVIGATION
+     ══════════════════════════════════════════════════════════ -->
+<nav id="sidebar">
+  <div class="sidebar-brand">
+    <div class="logo">MR. G'S<br>CS PRODUCTIONS</div>
+    <div class="sub">Blue Valley 229 · 2025–2026</div>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-section-label">Overview</div>
+    <a class="nav-link" href="#overview"><span class="dot" style="background:var(--cyan)"></span>Suite Overview</a>
+    <a class="nav-link" href="#architecture"><span class="dot" style="background:var(--text-dim)"></span>How It All Works</a>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-section-label">Escape Rooms</div>
+    <a class="nav-link green"  href="#code-locked"><span class="dot"></span>CODE://LOCKED</a>
+    <a class="nav-link purple" href="#pattern-breach"><span class="dot"></span>PATTERN://BREACH</a>
+    <a class="nav-link cyan"   href="#debug-locked"><span class="dot"></span>DEBUG://LOCKED</a>
+    <a class="nav-link amber"  href="#ct-challenge"><span class="dot"></span>CT://CHALLENGE</a>
+    <a class="nav-link mag"    href="#logic-probe"><span class="dot"></span>LOGIC://PROBE</a>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-section-label">Other Tools</div>
+    <a class="nav-link js" href="#js-build"><span class="dot"></span>JS://BUILD</a>
+    <a class="nav-link ct" href="#ct-solver"><span class="dot"></span>CT Problem Solver</a>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-section-label">EOY Culminating Guide</div>
+    <a class="nav-link eoy" href="#eoy-overview"><span class="dot"></span>EOY Guide Overview</a>
+    <a class="nav-link eoy" href="#eoy-template"><span class="dot"></span>Student Template</a>
+    <a class="nav-link eoy" href="#eoy-completed"><span class="dot"></span>Operation: Code Breach</a>
+    <a class="nav-link eoy" href="#eoy-student"><span class="dot"></span>Student Example (Leen)</a>
+  </div>
+
+  <div class="nav-section">
+    <div class="nav-section-label">Code Education</div>
+    <a class="nav-link code" href="#code-design-system"><span class="dot"></span>CSS Design System</a>
+    <a class="nav-link code" href="#code-screens"><span class="dot"></span>Screen Architecture</a>
+    <a class="nav-link code" href="#code-config"><span class="dot"></span>CONFIG Object</a>
+    <a class="nav-link code" href="#code-questions"><span class="dot"></span>QUESTIONS Array</a>
+    <a class="nav-link code" href="#code-state"><span class="dot"></span>State Management</a>
+    <a class="nav-link code" href="#code-functions"><span class="dot"></span>Core Functions</a>
+    <a class="nav-link code" href="#code-localstorage"><span class="dot"></span>localStorage</a>
+    <a class="nav-link code" href="#code-customize"><span class="dot"></span>How to Customize</a>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════════════════════
+     MAIN CONTENT
+     ══════════════════════════════════════════════════════════ -->
+<main id="main">
+
+  <!-- ── HERO ── -->
+  <div class="hero">
+    <div class="hero-eyebrow">Mr. G's Middle School CS Productions · Blue Valley 229 · 2025–2026</div>
+    <h1 class="hero-title">Master Reference Guide<br>Complete CS Suite</h1>
+    <p class="hero-sub">
+      A comprehensive, one-stop reference for the entire semester-long suite of interactive CS tools —
+      five escape rooms, a progressive JavaScript challenge, a CT Problem Solver, and the culminating
+      End-of-Year review system. Includes full code listings, line-by-line explanations, and
+      question inventories for every tool.
+    </p>
+    <div class="hero-badges">
+      <span class="hbadge g">CODE://LOCKED</span>
+      <span class="hbadge p">PATTERN://BREACH</span>
+      <span class="hbadge c">DEBUG://LOCKED</span>
+      <span class="hbadge a">CT://CHALLENGE</span>
+      <span class="hbadge m">LOGIC://PROBE</span>
+      <span class="hbadge j">JS://BUILD</span>
+      <span class="hbadge o">CT Problem Solver</span>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════════
+       SECTION: OVERVIEW
+       ══════════════════════════════════════════════ -->
+  <section class="section" id="overview">
+    <div class="section-header">
+      <div class="section-icon">🗂️</div>
+      <div>
+        <div class="section-title">Suite Overview</div>
+        <div class="section-desc">What was built, why, and how it fits together</div>
+      </div>
+    </div>
+
+    <p>
+      This entire suite was designed and built to give middle school CS students a <strong>gamified, browser-based
+      learning experience</strong> that requires no internet, no login, and no installation — just a browser and a file.
+      Every tool in the suite is a single <code>.html</code> file that opens directly from a local drive, USB stick,
+      or school network share.
+    </p>
+
+    <div class="stat-row">
+      <div class="stat-item"><div class="big-num">5</div><div class="stat-lbl">Escape Rooms</div></div>
+      <div class="stat-item"><div class="big-num">50</div><div class="stat-lbl">Escape Challenges</div></div>
+      <div class="stat-item"><div class="big-num">25</div><div class="stat-lbl">JS Build Levels</div></div>
+      <div class="stat-item"><div class="big-num">5</div><div class="stat-lbl">Student Guides</div></div>
+      <div class="stat-item"><div class="big-num">1</div><div class="stat-lbl">EOY Review System</div></div>
+    </div>
+
+    <div class="callout info">
+      <div class="callout-icon">🧭</div>
+      <div class="callout-content">
+        <div class="callout-title">Design Philosophy</div>
+        <p><strong>Concept First.</strong> Every tool introduces the idea in plain English before students
+        encounter code. The CS curriculum here mirrors Mr. G's classroom philosophy: relationships first,
+        concept first, then the technical vocabulary.</p>
+      </div>
+    </div>
+
+    <div class="tool-grid">
+      <div class="tool-card green">
+        <div class="tc-badge">ESCAPE ROOM 1</div>
+        <div class="tc-name">CODE://LOCKED</div>
+        <div class="tc-desc">CS fundamentals escape room with a green terminal aesthetic. 10 rooms covering the bedrock ideas every coder needs first.</div>
+        <div class="tc-topics">
+          <span class="tc-topic">Binary Numbers</span><span class="tc-topic">Loops</span>
+          <span class="tc-topic">Boolean Logic</span><span class="tc-topic">Debugging</span>
+          <span class="tc-topic">Decomposition</span>
+        </div>
+      </div>
+
+      <div class="tool-card purple">
+        <div class="tc-badge">ESCAPE ROOM 2</div>
+        <div class="tc-name">PATTERN://BREACH</div>
+        <div class="tc-desc">All four CT pillars explored through sequences, patterns, abstraction, and algorithmic thinking challenges.</div>
+        <div class="tc-topics">
+          <span class="tc-topic">Sequences</span><span class="tc-topic">Patterns</span>
+          <span class="tc-topic">Abstraction</span><span class="tc-topic">Algorithms</span>
+          <span class="tc-topic">Data Pipelines</span>
+        </div>
+      </div>
+
+      <div class="tool-card cyan">
+        <div class="tc-badge">ESCAPE ROOM 3</div>
+        <div class="tc-name">DEBUG://LOCKED</div>
+        <div class="tc-desc">Students debug block code and JavaScript logic — identifying wrong operators, missing keywords, and tracing fixed code.</div>
+        <div class="tc-topics">
+          <span class="tc-topic">Block Code</span><span class="tc-topic">JS Operators</span>
+          <span class="tc-topic">Variables</span><span class="tc-topic">Code Tracing</span>
+        </div>
+      </div>
+
+      <div class="tool-card amber">
+        <div class="tc-badge">ESCAPE ROOM 4</div>
+        <div class="tc-name">CT://CHALLENGE</div>
+        <div class="tc-desc">All four CT pillars applied to real-world word problems — buses, recipes, alphabets, and fundraiser data pipelines.</div>
+        <div class="tc-topics">
+          <span class="tc-topic">Real-World CT</span><span class="tc-topic">Word Problems</span>
+          <span class="tc-topic">All 4 Pillars</span><span class="tc-topic">Applied Thinking</span>
+        </div>
+      </div>
+
+      <div class="tool-card mag">
+        <div class="tc-badge">ESCAPE ROOM 5</div>
+        <div class="tc-name">LOGIC://PROBE</div>
+        <div class="tc-desc">Bebras-style visual puzzles — sorting machines, decision trees, pixel decoding, Caesar ciphers, LIFO stacks, and grid patterns.</div>
+        <div class="tc-topics">
+          <span class="tc-topic">Bebras-Style</span><span class="tc-topic">Sorting</span>
+          <span class="tc-topic">Stacks</span><span class="tc-topic">Ciphers</span>
+          <span class="tc-topic">Grid Logic</span>
+        </div>
+      </div>
+
+      <div class="tool-card js">
+        <div class="tc-badge">CODING CHALLENGE</div>
+        <div class="tc-name">JS://BUILD</div>
+        <div class="tc-desc">25 progressive levels where students incrementally build a working Number Guessing Game from scratch in JavaScript.</div>
+        <div class="tc-topics">
+          <span class="tc-topic">console.log</span><span class="tc-topic">Variables</span>
+          <span class="tc-topic">Functions</span><span class="tc-topic">Loops</span>
+          <span class="tc-topic">Arrays</span><span class="tc-topic">DOM</span>
+        </div>
+      </div>
+
+      <div class="tool-card ct">
+        <div class="tc-badge">AI TOOL (OFFLINE)</div>
+        <div class="tc-name">CT Problem Solver</div>
+        <div class="tc-desc">Keyword-aware offline engine that breaks down any problem using all four CT pillars across Math, ELA, Science, Social Studies, and CS.</div>
+        <div class="tc-topics">
+          <span class="tc-topic">All Subjects</span><span class="tc-topic">4 CT Pillars</span>
+          <span class="tc-topic">Offline First</span><span class="tc-topic">No API Needed</span>
+        </div>
+      </div>
+
+      <div class="tool-card eoy">
+        <div class="tc-badge">CULMINATING ACTIVITY</div>
+        <div class="tc-name">EOY Successful Guide</div>
+        <div class="tc-desc">A CyberPunk-styled student template where students design their own 20-question review escape room, embedding it in their Google Site portfolio.</div>
+        <div class="tc-topics">
+          <span class="tc-topic">Student-Created</span><span class="tc-topic">20 Questions</span>
+          <span class="tc-topic">Google Sites</span><span class="tc-topic">Metacognition</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       SECTION: ARCHITECTURE OVERVIEW
+       ══════════════════════════════════════════════ -->
+  <section class="section" id="architecture">
+    <div class="section-header">
+      <div class="section-icon">⚙️</div>
+      <div>
+        <div class="section-title">How It All Works</div>
+        <div class="section-desc">The universal architecture shared by every escape room</div>
+      </div>
+    </div>
+
+    <p>Every escape room in the suite (and the EOY student template) shares the same fundamental architecture.
+    Once you understand one, you understand all of them. The structure has three layers:</p>
+
+    <div class="flow-steps">
+      <div class="flow-step">
+        <div class="flow-num">1</div>
+        <div class="flow-content">
+          <div class="flow-title">CSS Design System (:root variables)</div>
+          <p>All colors, glows, and spacing are defined once as CSS custom properties. Changing the theme
+          means changing a handful of hex values at the top. Green escape room, purple escape room, CyberPunk
+          template — all just different <code>:root</code> values.</p>
+        </div>
+      </div>
+
+      <div class="flow-step">
+        <div class="flow-num">2</div>
+        <div class="flow-content">
+          <div class="flow-title">HTML Screen System (4 screens, only one visible at a time)</div>
+          <p>The page contains four <code>&lt;div class="screen"&gt;</code> blocks — Splash, Codename,
+          Question, and Results. JavaScript shows/hides them by toggling the <code>.active</code> CSS class.
+          Only the active screen is displayed; the rest are <code>display: none</code>.</p>
+        </div>
+      </div>
+
+      <div class="flow-step">
+        <div class="flow-num">3</div>
+        <div class="flow-content">
+          <div class="flow-title">JavaScript Data + Logic</div>
+          <p>Two data objects drive everything: <code>CONFIG</code> (title, teacher name, storage key) and
+          <code>QUESTIONS</code> (the array of room objects). A <code>let S = {...}</code> state object
+          tracks progress, and a set of functions handle each interaction: pick, skip, reset, save, load.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout warning">
+      <div class="callout-icon">📁</div>
+      <div class="callout-content">
+        <div class="callout-title">Important: Why No External Dependencies?</div>
+        <p>These files use <code>fetch()</code>-free design because browsers block network requests when
+        files are opened via <code>file://</code> protocol (a security restriction). All logic is embedded.
+        The only exception is loading the Google Fonts stylesheet — which requires an internet connection
+        for the fonts but degrades gracefully to monospace if offline.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       ESCAPE ROOM 1: CODE://LOCKED
+       ══════════════════════════════════════════════ -->
+  <section class="section" id="code-locked">
+    <div class="er-header green">
+      <div class="er-title">CODE://LOCKED</div>
+      <div class="er-subtitle">Escape Room 1 — CS Fundamentals · Green Terminal Theme</div>
+      <div class="er-meta">
+        <span class="er-meta-item">🎨 <strong>Color:</strong> Green (#00ff88)</span>
+        <span class="er-meta-item">🏫 <strong>Level:</strong> Beginner</span>
+        <span class="er-meta-item">⏱️ <strong>Timer:</strong> 40 minutes</span>
+        <span class="er-meta-item">🚪 <strong>Rooms:</strong> 10</span>
+      </div>
+    </div>
+
+    <p>The first escape room in the suite serves as an introduction to CS vocabulary and thinking. No coding
+    is required — students answer conceptual multiple-choice questions about the ideas that underpin all
+    programming. Perfect for the start of the year or a mid-unit vocabulary check.</p>
+
+    <h3>Room-by-Room Breakdown</h3>
+    <table class="room-table">
+      <thead>
+        <tr>
+          <th>Room</th><th>Room Name</th><th>CS Concept</th><th>CT Pillar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="rn">#1</td><td class="room-name">Binary Bunker</td><td>Binary number system, converting 0s and 1s</td><td><span class="ct-tag abstrac">Abstraction</span></td></tr>
+        <tr><td class="rn">#2</td><td class="room-name">Loop Lab</td><td>What a loop does, iteration count</td><td><span class="ct-tag algo">Algorithm</span></td></tr>
+        <tr><td class="rn">#3</td><td class="room-name">Boolean Bay</td><td>True/false values and logical operators</td><td><span class="ct-tag decomp">Decomposition</span></td></tr>
+        <tr><td class="rn">#4</td><td class="room-name">Variable Vault</td><td>What a variable stores and how it changes</td><td><span class="ct-tag abstrac">Abstraction</span></td></tr>
+        <tr><td class="rn">#5</td><td class="room-name">Debug Den</td><td>Identifying a logical error in pseudocode</td><td><span class="ct-tag decomp">Decomposition</span></td></tr>
+        <tr><td class="rn">#6</td><td class="room-name">Condition Control</td><td>If/else branching logic</td><td><span class="ct-tag algo">Algorithm</span></td></tr>
+        <tr><td class="rn">#7</td><td class="room-name">Decomp Depot</td><td>Breaking a problem into steps</td><td><span class="ct-tag decomp">Decomposition</span></td></tr>
+        <tr><td class="rn">#8</td><td class="room-name">Pattern Pass</td><td>Identifying a repeating sequence</td><td><span class="ct-tag pattern">Pattern</span></td></tr>
+        <tr><td class="rn">#9</td><td class="room-name">Function Factory</td><td>What a function does, why we use them</td><td><span class="ct-tag abstrac">Abstraction</span></td></tr>
+        <tr><td class="rn">#10</td><td class="room-name">Algorithm Attic</td><td>Ordering steps of an algorithm</td><td><span class="ct-tag algo">Algorithm</span></td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout success">
+      <div class="callout-icon">🎯</div>
+      <div class="callout-content">
+        <div class="callout-title">Pedagogical Purpose</div>
+        <p>CODE://LOCKED is intentionally vocabulary-forward. Questions are written so that a student who
+        has <em>heard</em> these terms in class — but hasn't coded yet — can succeed by reasoning from
+        plain-English definitions. The green terminal aesthetic reinforces the "classic hacker" metaphor
+        that makes CS feel like an adventure rather than a worksheet.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       ESCAPE ROOM 2: PATTERN://BREACH
+       ══════════════════════════════════════════════ -->
+  <section class="section" id="pattern-breach">
+    <div class="er-header purple">
+      <div class="er-title">PATTERN://BREACH</div>
+      <div class="er-subtitle">Escape Room 2 — Computational Thinking Pillars · Purple Theme</div>
+      <div class="er-meta">
+        <span class="er-meta-item">🎨 <strong>Color:</strong> Purple (#c084fc)</span>
+        <span class="er-meta-item">🏫 <strong>Level:</strong> Beginner–Intermediate</span>
+        <span class="er-meta-item">⏱️ <strong>Timer:</strong> 40 minutes</span>
+        <span class="er-meta-item">🚪 <strong>Rooms:</strong> 10</span>
+      </div>
+    </div>
+
+    <p>PATTERN://BREACH is explicitly built around the four pillars of Computational Thinking. Every room
+    is labeled with its CT pillar, so students see how each challenge maps to a real CT concept. The puzzle
+    types require more active thinking than Room 1 — completing sequences, identifying pattern pyramids,
+    and tracing a four-stage data pipeline.</p>
+
+    <h3>Room-by-Room Breakdown</h3>
+    <table class="room-table">
+      <thead>
+        <tr><th>Room</th><th>Room Name</th><th>Challenge Type</th><th>CT Pillar</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="rn">#1</td><td class="room-name">Sequence Station</td><td>Complete a step-by-step sequence in correct order</td><td><span class="ct-tag algo">Algorithm</span></td></tr>
+        <tr><td class="rn">#2</td><td class="room-name">Pattern Peak</td><td>Extend a recursive number sequence (Fibonacci-style)</td><td><span class="ct-tag pattern">Pattern</span></td></tr>
+        <tr><td class="rn">#3</td><td class="room-name">Abstraction Arch</td><td>Identify what detail can be hidden/simplified</td><td><span class="ct-tag abstrac">Abstraction</span></td></tr>
+        <tr><td class="rn">#4</td><td class="room-name">Decomp Dome</td><td>Break a complex task into correct sub-tasks</td><td><span class="ct-tag decomp">Decomposition</span></td></tr>
+        <tr><td class="rn">#5</td><td class="room-name">Pattern Pyramid</td><td>Identify the rule in a visual triangle of numbers</td><td><span class="ct-tag pattern">Pattern</span></td></tr>
+        <tr><td class="rn">#6</td><td class="room-name">Abstract Art</td><td>Choose the correct general rule from specific examples</td><td><span class="ct-tag abstrac">Abstraction</span></td></tr>
+        <tr><td class="rn">#7</td><td class="room-name">Algorithm Alley</td><td>Put a recipe-style algorithm in the correct order</td><td><span class="ct-tag algo">Algorithm</span></td></tr>
+        <tr><td class="rn">#8</td><td class="room-name">Break-It Bay</td><td>Decompose a real-world task (planning a party)</td><td><span class="ct-tag decomp">Decomposition</span></td></tr>
+        <tr><td class="rn">#9</td><td class="room-name">Pipeline Pass</td><td>Trace data through a four-stage data pipeline</td><td><span class="ct-tag algo">Algorithm</span></td></tr>
+        <tr><td class="rn">#10</td><td class="room-name">Pillar Plaza</td><td>Identify which CT pillar is being applied in a scenario</td><td><span class="ct-tag abstrac">Abstraction</span></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       ESCAPE ROOM 3: DEBUG://LOCKED
+       ══════════════════════════════════════════════ -->
+  <section class="section" id="debug-locked">
+    <div class="er-header cyan">
+      <div class="er-title">DEBUG://LOCKED</div>
+      <div class="er-subtitle">Escape Room 3 — Debugging Block & JavaScript Code · Cyan Theme</div>
+      <div class="er-meta">
+        <span class="er-meta-item">🎨 <strong>Color:</strong> Cyan (#00dcff)</span>
+        <span class="er-meta-item">🏫 <strong>Level:</strong> Intermediate</span>
+        <span class="er-meta-item">⏱️ <strong>Timer:</strong> 40 minutes</span>
+        <span class="er-meta-item">🚪 <strong>Rooms:</strong> 10</span>
+      </div>
+    </div>
+
+    <p>The most technically demanding of the original five escape rooms. Students are shown intentionally
+    broken code and must identify what is wrong. Errors range from wrong comparison operators, to missing
+    keywords, to case-sensitive variable naming issues, to off-by-one loop errors. Builds the habit of
+    reading code carefully — the single most important beginner skill.</p>
+
+    <h3>Room-by-Room Breakdown</h3>
+    <table class="room-table">
+      <thead>
+        <tr><th>Room</th><th>Room Name</th><th>Bug Type</th><th>CT Pillar</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="rn">#1</td><td class="room-name">Operator Error</td><td>Wrong comparison operator (= instead of ==)</td><td><span class="ct-tag decomp">Decomposition</span></td></tr>
+        <tr><td class="rn">#2</td><td class="room-name">Missing Keyword</td><td>Missing <code>let</code>/<code>var</code> declaration</td><td><span class="ct-tag decomp">Decomposition</span></td></tr>
+        <tr><td class="rn">#3</td><td class="room-name">Case Sensitivity</td><td>Variable named <code>Score</code> vs <code>score</code></td><td><span class="ct-tag pattern">Pattern</span></td></tr>
+        <tr><td class="rn">#4</td><td class="room-name">Loop Off-By-One</td><td>Loop condition uses <code>&gt;</code> instead of <code>&lt;</code></td><td><span class="ct-tag algo">Algorithm</span></td></tr>
+        <tr><td class="rn">#5</td><td class="room-name">Block Bug</td><td>Identify the broken block in a block-code sequence</td><td><span class="ct-tag decomp">Decomposition</span></td></tr>
+        <tr><td class="rn">#6</td><td class="room-name">String Snafu</td><td>Number stored as string causes wrong math result</td><td><span class="ct-tag abstrac">Abstraction</span></td></tr>
+        <tr><td class="rn">#7</td><td class="room-name">Function Fault</td><td>Function called before it is defined (hoisting)</td><td><span class="ct-tag algo">Algorithm</span></td></tr>
+        <tr><td class="rn">#8</td><td class="room-name">Boolean Blunder</td><td>Condition is always true — infinite loop</td><td><span class="ct-tag algo">Algorithm</span></td></tr>
+        <tr><td class="rn">#9</td><td class="room-name">Trace Track</td><td>Trace what a fixed version of the code outputs</td><td><span class="ct-tag pattern">Pattern</span></td></tr>
+        <tr><td class="rn">#10</td><td class="room-name">Final Fix</td><td>Identify the ONE line change that fixes the whole program</td><td><span class="ct-tag decomp">Decomposition</span></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       ESCAPE ROOM 4: CT://CHALLENGE
+       ══════════════════════════════════════════════ -->
+  <section class="section" id="ct-challenge">
+    <div class="er-header amber">
+      <div class="er-title">CT://CHALLENGE</div>
+      <div class="er-subtitle">Escape Room 4 — Real-World CT Word Problems · Amber/Gold Theme</div>
+      <div class="er-meta">
+        <span class="er-meta-item">🎨 <strong>Color:</strong> Amber (#ffb700)</span>
+        <span class="er-meta-item">🏫 <strong>Level:</strong> Intermediate</span>
+        <span class="er-meta-item">⏱️ <strong>Timer:</strong> 40 minutes</span>
+        <span class="er-meta-item">🚪 <strong>Rooms:</strong> 10</span>
+      </div>
+    </div>
+
+    <p>CT://CHALLENGE bridges computational thinking with everyday real-world scenarios. Rather than asking
+    "what is decomposition?" it asks students to <em>apply</em> decomposition to a school bus routing problem.
+    This is the "transfer" escape room — the one that tests whether students truly understand the pillars,
+    not just whether they can define them.</p>
+
+    <h3>Room-by-Room Breakdown</h3>
+    <table class="room-table">
+      <thead>
+        <tr><th>Room</th><th>Room Name</th><th>Scenario</th><th>CT Pillar</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="rn">#1</td><td class="room-name">Bus Route</td><td>Break a school bus routing problem into sub-problems</td><td><span class="ct-tag decomp">Decomposition</span></td></tr>
+        <tr><td class="rn">#2</td><td class="room-name">Recipe Remix</td><td>Identify the pattern in a scaled recipe</td><td><span class="ct-tag pattern">Pattern</span></td></tr>
+        <tr><td class="rn">#3</td><td class="room-name">Alphabet Sort</td><td>Identify the algorithm used to sort a list alphabetically</td><td><span class="ct-tag algo">Algorithm</span></td></tr>
+        <tr><td class="rn">#4</td><td class="room-name">Library Logic</td><td>Abstraction: what detail can the library catalog ignore?</td><td><span class="ct-tag abstrac">Abstraction</span></td></tr>
+        <tr><td class="rn">#5</td><td class="room-name">Fundraiser Flow</td><td>Trace money through a 4-step fundraiser pipeline</td><td><span class="ct-tag algo">Algorithm</span></td></tr>
+        <tr><td class="rn">#6</td><td class="room-name">Weather Watch</td><td>Find the pattern in a week of temperature data</td><td><span class="ct-tag pattern">Pattern</span></td></tr>
+        <tr><td class="rn">#7</td><td class="room-name">Lunch Line</td><td>Break lunch-serving into the smallest necessary steps</td><td><span class="ct-tag decomp">Decomposition</span></td></tr>
+        <tr><td class="rn">#8</td><td class="room-name">Map Maker</td><td>Which details does a city map abstract away?</td><td><span class="ct-tag abstrac">Abstraction</span></td></tr>
+        <tr><td class="rn">#9</td><td class="room-name">Code Compare</td><td>Two algorithms do the same thing — which is more efficient?</td><td><span class="ct-tag algo">Algorithm</span></td></tr>
+        <tr><td class="rn">#10</td><td class="room-name">The Big Four</td><td>Four scenarios, identify all four CT pillars in action at once</td><td><span class="ct-tag decomp">Decomposition</span><span class="ct-tag pattern">Pattern</span><span class="ct-tag abstrac">Abstraction</span><span class="ct-tag algo">Algorithm</span></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       ESCAPE ROOM 5: LOGIC://PROBE
+       ══════════════════════════════════════════════ -->
+  <section class="section" id="logic-probe">
+    <div class="er-header mag">
+      <div class="er-title">LOGIC://PROBE</div>
+      <div class="er-subtitle">Escape Room 5 — Bebras-Style Visual Logic Puzzles · Magenta/Indigo Theme</div>
+      <div class="er-meta">
+        <span class="er-meta-item">🎨 <strong>Color:</strong> Magenta (#f059f0)</span>
+        <span class="er-meta-item">🏫 <strong>Level:</strong> Advanced</span>
+        <span class="er-meta-item">⏱️ <strong>Timer:</strong> 40 minutes</span>
+        <span class="er-meta-item">🚪 <strong>Rooms:</strong> 10</span>
+      </div>
+    </div>
+
+    <p>The capstone escape room. LOGIC://PROBE uses Bebras-style puzzles — the international CS competition
+    format that tests logical reasoning with visual, self-contained problems. No prior programming knowledge
+    is required to attempt these, but strong logical thinking is. These puzzles are the hardest in the suite
+    and work best as a group challenge.</p>
+
+    <h3>Room-by-Room Breakdown</h3>
+    <table class="room-table">
+      <thead>
+        <tr><th>Room</th><th>Room Name</th><th>Puzzle Type</th><th>CS Concept</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="rn">#1</td><td class="room-name">Sorting Machine</td><td>Trace items through a sorting algorithm's comparison steps</td><td>Sorting Algorithms</td></tr>
+        <tr><td class="rn">#2</td><td class="room-name">Decision Tree</td><td>Route an item through a branching decision tree</td><td>Conditional Logic</td></tr>
+        <tr><td class="rn">#3</td><td class="room-name">Network Hops</td><td>Count minimum hops between nodes in a network graph</td><td>Graph Theory / Networks</td></tr>
+        <tr><td class="rn">#4</td><td class="room-name">Logic Elimination</td><td>Use clues to eliminate possibilities (constraint logic)</td><td>Boolean Logic</td></tr>
+        <tr><td class="rn">#5</td><td class="room-name">Pixel Decoder</td><td>Decode a pixel grid to reveal a letter</td><td>Binary / Encoding</td></tr>
+        <tr><td class="rn">#6</td><td class="room-name">Robot Grid</td><td>Trace a robot's path on a grid following instructions</td><td>Algorithms / Coordinates</td></tr>
+        <tr><td class="rn">#7</td><td class="room-name">Stack Attack</td><td>LIFO stack simulation — what item comes out next?</td><td>Data Structures (Stacks)</td></tr>
+        <tr><td class="rn">#8</td><td class="room-name">Caesar Cipher</td><td>Decode a message using a +3 letter shift cipher</td><td>Encryption / Ciphers</td></tr>
+        <tr><td class="rn">#9</td><td class="room-name">Constraint Station</td><td>Who can sit where? Constraint satisfaction puzzle</td><td>Constraint Logic</td></tr>
+        <tr><td class="rn">#10</td><td class="room-name">Number Grid</td><td>Find the rule in a 2D number grid and apply it</td><td>Pattern Recognition</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       JS://BUILD
+       ══════════════════════════════════════════════ -->
+  <section class="section" id="js-build">
+    <div class="section-header">
+      <div class="section-icon">🔨</div>
+      <div>
+        <div class="section-title" style="color:#f7df1e">JS://BUILD</div>
+        <div class="section-desc">25-Level Progressive JavaScript Coding Challenge</div>
+      </div>
+    </div>
+
+    <p>JS://BUILD is the only tool in the suite where students actually write code. Over 25 levels, they
+    incrementally build a complete, working Number Guessing Game in JavaScript — starting with a single
+    <code>console.log()</code> and ending with a fully interactive browser game they can download and keep.</p>
+
+    <div class="two-col">
+      <div>
+        <h3>Five Phases</h3>
+        <table class="room-table">
+          <thead><tr><th>Phase</th><th>Levels</th><th>Concepts</th></tr></thead>
+          <tbody>
+            <tr><td class="rn">Phase 1</td><td>1–5</td><td>console.log, variables, math, string concatenation</td></tr>
+            <tr><td class="rn">Phase 2</td><td>6–10</td><td>if/else, comparison operators, boolean logic</td></tr>
+            <tr><td class="rn">Phase 3</td><td>11–15</td><td>Functions, parameters, return values</td></tr>
+            <tr><td class="rn">Phase 4</td><td>16–20</td><td>Loops, arrays, Math.random(), parseInt()</td></tr>
+            <tr><td class="rn">Phase 5</td><td>21–25</td><td>DOM manipulation, events, full game integration</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h3>Interface Features</h3>
+        <ul>
+          <li>Split-panel: instructions left, code editor right</li>
+          <li>Line-numbered editor with Tab key support</li>
+          <li>RUN, CHECK, HINT, and CLEAR buttons</li>
+          <li>Console output captured via <code>console.log</code> interception</li>
+          <li>Progress saved to <code>localStorage</code></li>
+          <li>Plain-English debug tips for common error messages</li>
+          <li>Level 25: live game preview + Blob-based download button</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout info">
+      <div class="callout-icon">💡</div>
+      <div class="callout-content">
+        <div class="callout-title">The Payoff Moment</div>
+        <p>At Level 25, students click a "Download My Game" button that creates a real <code>.html</code> file
+        using the Blob API and saves it to their computer. They've built a game they can show their
+        parents. That moment of genuine ownership is the entire point.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       CT PROBLEM SOLVER
+       ══════════════════════════════════════════════ -->
+  <section class="section" id="ct-solver">
+    <div class="section-header">
+      <div class="section-icon">🧠</div>
+      <div>
+        <div class="section-title" style="color:#ff9944">CT Problem Solver</div>
+        <div class="section-desc">Offline AI-Style CT Breakdown Tool</div>
+      </div>
+    </div>
+
+    <p>The CT Problem Solver was designed to help students apply computational thinking to problems across
+    all five core subjects. Students type or paste a problem, select their subject, and the tool generates
+    a four-pillar CT breakdown with action steps and examples.</p>
+
+    <div class="callout warning">
+      <div class="callout-icon">⚠️</div>
+      <div class="callout-content">
+        <div class="callout-title">Important Build Decision: Why Offline?</div>
+        <p>The original version called the Anthropic API directly. When opened via <code>file://</code>
+        protocol, browsers block <code>fetch()</code> requests — a security rule called CORS/Mixed Content
+        blocking. The rebuild replaced the API call with a <strong>keyword-aware embedded knowledge base</strong>
+        containing subject-specific and concept-specific CT breakdowns. No internet needed, no API key needed,
+        works instantly anywhere.</p>
+      </div>
+    </div>
+
+    <h3>Subject Coverage</h3>
+    <div class="two-col">
+      <div>
+        <ul>
+          <li><strong>Math</strong> — word problems, geometry, fractions, equations</li>
+          <li><strong>ELA</strong> — reading comprehension, essays, grammar, stories</li>
+          <li><strong>Science</strong> — experiments, classification, data, hypotheses</li>
+        </ul>
+      </div>
+      <div>
+        <ul>
+          <li><strong>Social Studies</strong> — history, geography, government, economics</li>
+          <li><strong>Computer Science</strong> — algorithms, debugging, data, programs</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       EOY GUIDE: OVERVIEW
+       ══════════════════════════════════════════════ -->
+  <section class="section" id="eoy-overview">
+    <div class="er-header eoy">
+      <div class="er-title">EOY SUCCESSFUL GUIDE</div>
+      <div class="er-subtitle">End-of-Year Culminating Activity · CyberPunk Style · 2025–2026</div>
+      <div class="er-meta">
+        <span class="er-meta-item">📅 <strong>When:</strong> End of Year / End of Semester</span>
+        <span class="er-meta-item">🎯 <strong>Type:</strong> Student-Created Escape Room</span>
+        <span class="er-meta-item">❓ <strong>Questions:</strong> 20 per student</span>
+        <span class="er-meta-item">🌐 <strong>Delivery:</strong> Embedded in Google Site</span>
+      </div>
+    </div>
+
+    <p>The EOY Successful Guide is the culminating metacognition activity for the semester. Rather than
+    <em>playing</em> an escape room, students now <strong>build one</strong>. They are given Mr. G's
+    CyberPunk-styled template — a fully functional 20-question escape room game — and must fill in their
+    own review questions and answers from the year's content.</p>
+
+    <div class="flow-steps">
+      <div class="flow-step">
+        <div class="flow-num">1</div>
+        <div class="flow-content">
+          <div class="flow-title">Open the Template</div>
+          <p>Students receive the template from the Word document. The only section they touch is marked in
+          orange font — the <code>CONFIG</code> object (title, subtitle, teacher name) and the
+          <code>QUESTIONS</code> array (20 question objects).</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">2</div>
+        <div class="flow-content">
+          <div class="flow-title">Write 20 Questions</div>
+          <p>Students create 20 review questions from the year. Each question needs: a room name, question
+          text, 2–4 choices, the index of the correct answer (0, 1, 2, or 3), and a hint.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">3</div>
+        <div class="flow-content">
+          <div class="flow-title">Convert and Save as index.html</div>
+          <p>Students copy their completed code into a Text Editor, convert to plain text, uncheck the .txt
+          box, and name the file <code>index.html</code>.</p>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">4</div>
+        <div class="flow-content">
+          <div class="flow-title">Embed in Google Site</div>
+          <p>The HTML file is embedded in the student's Google Site portfolio for Mr. G to observe and attempt.
+          Other students can play each other's escape rooms.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       EOY GUIDE: STUDENT TEMPLATE (ANNOTATED)
+       ══════════════════════════════════════════════ -->
+  <section class="section" id="eoy-template">
+    <div class="section-header">
+      <div class="section-icon">📋</div>
+      <div>
+        <div class="section-title">EOY Student Template — Annotated</div>
+        <div class="section-desc">The CONFIG and QUESTIONS sections students must complete, with explanations</div>
+      </div>
+    </div>
+
+    <p>Below is the student-editable portion of the EOY template — the only part marked in orange in
+    the Word document. Everything else is game engine code they leave untouched.</p>
+
+    <div class="annotation">
+      <div class="ann-label">📋 Teacher Instruction (from the Word doc)</div>
+      Students copy the completed code into their Text Editor, convert to plain text, uncheck the box for .txt,
+      and name the file <strong>index.html</strong>. Then embed the plain text code in their Google Site
+      website for Mr. G to observe and attempt. <strong>DO NOT CHANGE ANY PUNCTUATION OR CODE OTHER THAN
+      INSIDE QUOTATIONS.</strong>
+    </div>
+
+    <h3>Section 1 — The CONFIG Object</h3>
+    <p>This object sets the title, subtitle, teacher name, subject line, and localStorage key for the game.</p>
+
+    <div class="code-section">
+      <div class="code-header">
+        <span class="code-label">Student Configuration Zone — CONFIG</span>
+        <span class="code-lang">JavaScript</span>
+      </div>
+      <div class="code-body"><span class="kw">const</span> CONFIG = {
+  <span class="prop">title</span>:      <span class="str">"My 25-26 Review Application"</span>,  <span class="cmt">// ← Change to your own title</span>
+  <span class="prop">subtitle</span>:   <span class="str">"My Awesome Questions and Answers"</span>, <span class="cmt">// ← Your unit or topic</span>
+  <span class="prop">teacher</span>:    <span class="str">"Mr. G"</span>,                             <span class="cmt">// ← Your teacher's name</span>
+  <span class="prop">subject</span>:    <span class="str">"Blue Valley 229  |  CS"</span>,            <span class="cmt">// ← Course / school</span>
+  <span class="prop">storageKey</span>: <span class="str">"bv229_room_v1"</span>                     <span class="cmt">// ← Change v1→v2 for a fresh start</span>
+};</div>
+    </div>
+
+    <table class="lbl-table">
+      <tr>
+        <td class="lcode">title</td>
+        <td class="lexpl">Shows as the big title on the splash screen. Make it descriptive — this is what your classmates see first.</td>
+      </tr>
+      <tr>
+        <td class="lcode">subtitle</td>
+        <td class="lexpl">A shorter tagline under the title. Could be your class period, topic, or a fun mission name.</td>
+      </tr>
+      <tr>
+        <td class="lcode">teacher</td>
+        <td class="lexpl">Your teacher's name. Shows on the results page at the bottom.</td>
+      </tr>
+      <tr>
+        <td class="lcode">subject</td>
+        <td class="lexpl">Your school and course name. Also shows on the results page.</td>
+      </tr>
+      <tr>
+        <td class="lcode">storageKey</td>
+        <td class="lexpl">A unique name used to save progress in the browser. If two students use the same storageKey on the same computer, their progress will overwrite each other — change the number (v1→v2) to prevent this.</td>
+      </tr>
+    </table>
+
+    <div class="divider"></div>
+
+    <h3>Section 2 — The QUESTIONS Array</h3>
+    <p>Each of the 20 rooms needs one object in this array. Every object must have the same five fields.</p>
+
+    <div class="code-section">
+      <div class="code-header">
+        <span class="code-label">One Question Object — Complete Structure</span>
+        <span class="code-lang">JavaScript</span>
+      </div>
+      <div class="code-body">{
+  <span class="prop">room</span>:     <span class="str">"Boolean Bay"</span>,                    <span class="cmt">// Room name — shown as a badge in the game</span>
+  <span class="prop">question</span>: <span class="str">"Which of the following is a Boolean?"</span>, <span class="cmt">// The actual question</span>
+  <span class="prop">choices</span>:  [<span class="str">"42"</span>, <span class="str">"\"true\""</span>, <span class="str">"true"</span>, <span class="str">"[true]"</span>],  <span class="cmt">// 2–4 answer options</span>
+  <span class="prop">answer</span>:   <span class="num">2</span>,                               <span class="cmt">// INDEX of correct choice (0=first, 1=second...)</span>
+  <span class="prop">hint</span>:     <span class="str">"Boolean values are NOT in quotes. 🎯"</span> <span class="cmt">// Shown after a wrong guess</span>
+},</div>
+    </div>
+
+    <table class="lbl-table">
+      <tr>
+        <td class="lcode">room</td>
+        <td class="lexpl">A fun name for this challenge room. Shows in a badge above the question. Be creative!</td>
+      </tr>
+      <tr>
+        <td class="lcode">question</td>
+        <td class="lexpl">The question students must answer. Keep it clear and specific. Avoid trick wording.</td>
+      </tr>
+      <tr>
+        <td class="lcode">choices</td>
+        <td class="lexpl">An array of 2–4 answer options. Each option is a string in quotes. Square brackets hold the array, each choice is separated by a comma. The game auto-assigns A, B, C, D labels.</td>
+      </tr>
+      <tr>
+        <td class="lcode">answer</td>
+        <td class="lexpl">The INDEX (position) of the correct choice. <strong>Index starts at 0!</strong> So if the correct answer is the third option, answer is 2 — not 3.</td>
+      </tr>
+      <tr>
+        <td class="lcode">hint</td>
+        <td class="lexpl">A hint that appears after a wrong guess. Write it to guide thinking, not give away the answer directly. Emojis are encouraged!</td>
+      </tr>
+    </table>
+
+    <div class="annotation amber">
+      <div class="ann-label">⚠️ Most Common Student Mistakes</div>
+      <strong>1. Wrong answer index.</strong> Students write <code>answer: 3</code> meaning "the third choice" but JavaScript counts from 0 — the third choice is index <code>2</code>.<br><br>
+      <strong>2. Missing comma between question objects.</strong> Each <code>{ ... }</code> object in the QUESTIONS array must end with a comma — except the very last one.<br><br>
+      <strong>3. Unmatched quotes.</strong> If the question text contains an apostrophe (like "It's"), use double quotes to wrap the string: <code>"It's a boolean"</code> — not single quotes.
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       EOY: OPERATION CODE BREACH (MR. G's VERSION)
+       ══════════════════════════════════════════════ -->
+  <section class="section" id="eoy-completed">
+    <div class="section-header">
+      <div class="section-icon">🎖️</div>
+      <div>
+        <div class="section-title">Operation: Code Breach</div>
+        <div class="section-desc">Mr. G's Completed EOY Example — Q3 &amp; Q4 Mission Review</div>
+      </div>
+    </div>
+
+    <p>This is Mr. G's own completed version of the EOY template — a 20-question review of Q3 and Q4
+    content specifically tailored to Blue Valley 229. It models exactly what students should produce,
+    and can be played as a review activity before the EOY project is assigned.</p>
+
+    <div class="code-section">
+      <div class="code-header">
+        <span class="code-label">Operation: Code Breach — CONFIG Object</span>
+        <span class="code-lang">JavaScript</span>
+      </div>
+      <div class="code-body"><span class="kw">const</span> CONFIG = {
+  <span class="prop">title</span>:      <span class="str">"Operation: Code Breach"</span>,
+  <span class="prop">subtitle</span>:   <span class="str">"Q3 &amp; Q4 Mission Review"</span>,
+  <span class="prop">teacher</span>:    <span class="str">"Mr. Grindstaff"</span>,
+  <span class="prop">subject</span>:    <span class="str">"Blue Valley 229  |  CS"</span>,
+  <span class="prop">storageKey</span>: <span class="str">"bv229_q3q4_v1"</span>
+};</div>
+    </div>
+
+    <h3>All 20 Questions — Operation: Code Breach</h3>
+
+    <div class="qa-block">
+      <div class="qa-room">Room 1 — IPO Interrogation Room</div>
+      <div class="qa-q">In our 'Concept First' approach, what does the 'I' in IPO stand for when a Sphero Bolt+ hits a wall?</div>
+      <div class="qa-choices">
+        <div class="qa-choice">A — Instruction</div>
+        <div class="qa-choice correct">B — Input ✓</div>
+        <div class="qa-choice">C — Iteration</div>
+        <div class="qa-choice">D — Internal</div>
+      </div>
+      <div class="qa-hint">💡 Think about what triggers the robot to react. 🤖</div>
+    </div>
+
+    <div class="qa-block">
+      <div class="qa-room">Room 2 — AI Ethics Lab</div>
+      <div class="qa-q">Which of these best describes 'Responsible Use' when using a Large Language Model (AI) for a school assignment?</div>
+      <div class="qa-choices">
+        <div class="qa-choice">A — Copying and pasting the first result directly into your Google Site.</div>
+        <div class="qa-choice">B — Letting the AI write the entire essay while you do something else.</div>
+        <div class="qa-choice correct">C — Using AI as a co-pilot to help brainstorm and refine your own original ideas. ✓</div>
+        <div class="qa-choice">D — Avoiding AI entirely because it is never allowed.</div>
+      </div>
+      <div class="qa-hint">💡 Think about the Human-in-the-Loop philosophy. 🧑‍✈️</div>
+    </div>
+
+    <div class="qa-block">
+      <div class="qa-room">Room 3 — Screenshot Sector</div>
+      <div class="qa-q">On our Mac Desktops, where is the best place to find your screenshots before you upload them to your Google Site?</div>
+      <div class="qa-choices">
+        <div class="qa-choice correct">A — The Desktop folder ✓</div>
+        <div class="qa-choice">B — The Applications folder</div>
+        <div class="qa-choice">C — The Trash Can</div>
+        <div class="qa-choice">D — Inside the System Settings</div>
+      </div>
+      <div class="qa-hint">💡 It's the default location on the macOS desktop environment. 🖥️</div>
+    </div>
+
+    <div class="qa-block">
+      <div class="qa-room">Room 4 — Signal Station</div>
+      <div class="qa-q">When programming the Sphero 'Follow the Leader' mission, which technology allows the robots to talk to each other?</div>
+      <div class="qa-choices">
+        <div class="qa-choice">A — Fiber Optic Cables</div>
+        <div class="qa-choice">B — Ultrasonic Sound Waves</div>
+        <div class="qa-choice">C — Manual Remote Control</div>
+        <div class="qa-choice correct">D — Infrared (IR) Broadcasting ✓</div>
+      </div>
+      <div class="qa-hint">💡 It's a type of wireless communication also found in TV remotes. 📡</div>
+    </div>
+
+    <div class="qa-block">
+      <div class="qa-room">Room 5 — Bottleneck Base</div>
+      <div class="qa-q">In the 'Blue Valley Bottleneck' challenge, what was the primary goal of the 'Architect'?</div>
+      <div class="qa-choices">
+        <div class="qa-choice">A — To build a 3D model of the school out of cardboard.</div>
+        <div class="qa-choice correct">B — To simulate and solve traffic flow problems in the hallways. ✓</div>
+        <div class="qa-choice">C — To design a faster way to get to the lunchroom.</div>
+        <div class="qa-choice">D — To program a robot to clean the floors.</div>
+      </div>
+      <div class="qa-hint">💡 Think about how we manage movement in a crowded space. 🏫</div>
+    </div>
+
+    <div class="qa-block">
+      <div class="qa-room">Room 6 — Algorithm Alley</div>
+      <div class="qa-q">What does a social media 'Engagement Score' primarily measure?</div>
+      <div class="qa-choices">
+        <div class="qa-choice correct">A — How likely a user is to interact with or watch a piece of content. ✓</div>
+        <div class="qa-choice">B — The factual accuracy of a news story.</div>
+        <div class="qa-choice">C — The number of typos in a post.</div>
+        <div class="qa-choice">D — How much money the user has in their bank account.</div>
+      </div>
+      <div class="qa-hint">💡 It looks at how much time and interaction a post gets. 📱</div>
+    </div>
+
+    <div class="qa-block">
+      <div class="qa-room">Room 7 — Process Passage</div>
+      <div class="qa-q">In the 'Hungry Sphero' challenge, what represents the 'Process' in the IPO model?</div>
+      <div class="qa-choices">
+        <div class="qa-choice">A — The color of the Sphero's LED lights.</div>
+        <div class="qa-choice">B — The floor of the classroom.</div>
+        <div class="qa-choice correct">C — The code logic that decides how the robot should move. ✓</div>
+        <div class="qa-choice">D — The physical battery inside the robot.</div>
+      </div>
+      <div class="qa-hint">💡 It's what happens between sensing an object and moving toward it. ⚙️</div>
+    </div>
+
+    <div class="qa-block">
+      <div class="qa-room">Room 8 — Emoji Embassy</div>
+      <div class="qa-q">Which term describes a 'state of emotional confusion' caused by too many misinterpreted digital icons?</div>
+      <div class="qa-choices">
+        <div class="qa-choice">A — Digital Burnout</div>
+        <div class="qa-choice">B — Icon Overload</div>
+        <div class="qa-choice">C — Pixel Fatigue</div>
+        <div class="qa-choice correct">D — Emojically Damaged ✓</div>
+      </div>
+      <div class="qa-hint">💡 Mr. Grindstaff coined this term specifically for our class. 😵</div>
+    </div>
+
+    <div class="qa-block">
+      <div class="qa-room">Room 9 — Echo Chamber</div>
+      <div class="qa-q">In the 'Rating Trap' simulation, how can 'Bias' affect your social media feed?</div>
+      <div class="qa-choices">
+        <div class="qa-choice">A — It makes your internet connection run much slower.</div>
+        <div class="qa-choice correct">B — It can create an 'echo chamber' where you only see things you agree with. ✓</div>
+        <div class="qa-choice">C — It automatically deletes your account for mean comments.</div>
+        <div class="qa-choice">D — It forces you to see every post from friends in order.</div>
+      </div>
+      <div class="qa-hint">💡 Think about whether you see a variety of views or just one side. 🔁</div>
+    </div>
+
+    <div class="qa-block">
+      <div class="qa-room">Room 10 — Portfolio Plaza</div>
+      <div class="qa-q">What is the primary purpose of your 'Portfolio' Google Site in this class?</div>
+      <div class="qa-choices">
+        <div class="qa-choice">A — To host a private server for games.</div>
+        <div class="qa-choice">B — To replace the need for talking to the teacher.</div>
+        <div class="qa-choice correct">C — To document and showcase your projects and growth. ✓</div>
+        <div class="qa-choice">D — To practice typing as fast as possible.</div>
+      </div>
+      <div class="qa-hint">💡 Think about where you store your 'evidence' of learning. 📂</div>
+    </div>
+
+    <div class="qa-block">
+      <div class="qa-room">Room 11 — Decomp Den</div>
+      <div class="qa-q">Which part of Computational Thinking involves breaking a big problem into smaller, manageable parts?</div>
+      <div class="qa-choices">
+        <div class="qa-choice">A — Pattern Recognition</div>
+        <div class="qa-choice">B — Abstraction</div>
+        <div class="qa-choice">C — Algorithm Design</div>
+        <div class="qa-choice correct">D — Decomposition ✓</div>
+      </div>
+      <div class="qa-hint">💡 Think about 'taking it apart' piece by piece. 🧩</div>
+    </div>
+
+    <div class="qa-block">
+      <div class="qa-room">Room 12 — Protocol 404</div>
+      <div class="qa-q">In our 'Protocol 404' missions, what does 'Conditional Logic' usually look like in code?</div>
+      <div class="qa-choices">
+        <div class="qa-choice">A — Infinite Loops</div>
+        <div class="qa-choice">B — Variable Assignments</div>
+        <div class="qa-choice">C — Print Statements</div>
+        <div class="qa-choice correct">D — If-Then-Else statements ✓</div>
+      </div>
+      <div class="qa-hint">💡 It involves making a choice based on a situation. 🔀</div>
+    </div>
+
+    <div class="qa-block">
+      <div class="qa-room">Room 13 — Real World Archive</div>
+      <div class="qa-q">What is a 'Real World Algorithm'?</div>
+      <div class="qa-choices">
+        <div class="qa-choice">A — A special type of computer monitor.</div>
+        <div class="qa-choice">B — A mathematical formula only scientists use.</div>
+        <div class="qa-choice correct">C — A step-by-step set of instructions to complete a daily task. ✓</div>
+        <div class="qa-choice">D — A virus that infects your smartphone.</div>
+      </div>
+      <div class="qa-hint">💡 Think about your DoorDash or Food Prep challenges. 🍕</div>
+    </div>
+
+    <div class="qa-block">
+      <div class="qa-room">Room 14 — History Hub</div>
+      <div class="qa-q">In our 'History of Computing' project, who is often credited with designing the 19th-century 'Analytical Engine'?</div>
+      <div class="qa-choices">
+        <div class="qa-choice">A — Steve Jobs</div>
+        <div class="qa-choice correct">B — Charles Babbage ✓</div>
+        <div class="qa-choice">C — Elon Musk</div>
+        <div class="qa-choice">D — Bill Gates</div>
+      </div>
+      <div class="qa-hint">💡 Think back to the 'Babbage to Bots' project. ⚙️</div>
+    </div>
+
+    <div class="qa-block">
+      <div class="qa-room">Room 15 — Citizenship Checkpoint</div>
+      <div class="qa-q">Why is 'Digital Citizenship' refreshed every quarter in our class?</div>
+      <div class="qa-choices">
+        <div class="qa-choice">A — Because we forgot we already did it.</div>
+        <div class="qa-choice">B — To make sure everyone has the same score in Typing.com.</div>
+        <div class="qa-choice">C — To learn how to hack into other accounts.</div>
+        <div class="qa-choice correct">D — To ensure we use technology safely, ethically, and kindly. ✓</div>
+      </div>
+      <div class="qa-hint">💡 Think about how your online actions affect your future. 🌐</div>
+    </div>
+
+    <div class="qa-block">
+      <div class="qa-room">Room 16 — Output Observatory</div>
+      <div class="qa-q">In the 'Sphero Driver's Test,' what is an example of an 'Output'?</div>
+      <div class="qa-choices">
+        <div class="qa-choice correct">A — The robot spinning 360 degrees. ✓</div>
+        <div class="qa-choice">B — A student pressing 'Start'.</div>
+        <div class="qa-choice">C — The Bluetooth connection signal.</div>
+        <div class="qa-choice">D — The low-battery warning on the iPad.</div>
+      </div>
+      <div class="qa-hint">💡 What does the robot physically DO as a result of the code? 🔄</div>
+    </div>
+
+    <div class="qa-block">
+      <div class="qa-room">Room 17 — Device Division</div>
+      <div class="qa-q">What is the primary difference between a Mac Desktop and a mobile device (like a phone)?</div>
+      <div class="qa-choices">
+        <div class="qa-choice">A — Phones are the only devices that can connect to the internet.</div>
+        <div class="qa-choice">B — Desktops do not use any electricity.</div>
+        <div class="qa-choice correct">C — Desktops allow for complex multitasking and visible file management. ✓</div>
+        <div class="qa-choice">D — Desktops are designed to be carried in your pocket.</div>
+      </div>
+      <div class="qa-hint">💡 Think about multitasking and file management. 💻</div>
+    </div>
+
+    <div class="qa-block">
+      <div class="qa-room">Room 18 — Co-Pilot Command</div>
+      <div class="qa-q">In the 'Phobia Problem' project, why did we refer to the AI as a 'Co-Pilot' rather than the 'Pilot'?</div>
+      <div class="qa-choices">
+        <div class="qa-choice">A — Because AI makes too many mistakes to be a Pilot.</div>
+        <div class="qa-choice correct">B — Because the human student is the 'Pilot' who makes the final decisions. ✓</div>
+        <div class="qa-choice">C — Because 'Co-Pilot' is a faster way to say 'AI'.</div>
+        <div class="qa-choice">D — Because the project was about airplanes.</div>
+      </div>
+      <div class="qa-hint">💡 Think about our 'Human-in-the-Loop' philosophy. 🧑‍✈️</div>
+    </div>
+
+    <div class="qa-block">
+      <div class="qa-room">Room 19 — Traffic Terminal</div>
+      <div class="qa-q">Which Quarter 4 project focused on solving hallway congestion using data?</div>
+      <div class="qa-choices">
+        <div class="qa-choice">A — Hungry Sphero Challenge</div>
+        <div class="qa-choice">B — Agent Escape Room</div>
+        <div class="qa-choice">C — Social Media Safe Ride</div>
+        <div class="qa-choice correct">D — The Blue Valley Bottleneck ✓</div>
+      </div>
+      <div class="qa-hint">💡 It involved observing and predicting traffic patterns. 🚶</div>
+    </div>
+
+    <div class="qa-block">
+      <div class="qa-room">Room 20 — The Fourth R Room</div>
+      <div class="qa-q">What is the 'Fourth R' that Mr. Grindstaff emphasizes in our classroom?</div>
+      <div class="qa-choices">
+        <div class="qa-choice correct">A — Relationships ✓</div>
+        <div class="qa-choice">B — Robotics</div>
+        <div class="qa-choice">C — Rectangle</div>
+        <div class="qa-choice">D — Requirements</div>
+      </div>
+      <div class="qa-hint">💡 It's about how we treat each other — it comes before content every time. ❤️</div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       EOY: STUDENT EXAMPLE (LEEN)
+       ══════════════════════════════════════════════ -->
+  <section class="section" id="eoy-student">
+    <div class="section-header">
+      <div class="section-icon">🎓</div>
+      <div>
+        <div class="section-title">Student Example — Leen's Review Application</div>
+        <div class="section-desc">A completed student version showing JavaScript fundamentals review</div>
+      </div>
+    </div>
+
+    <p>This is a completed student submission included in the EOY guide document. Leen's escape room
+    covers core JavaScript concepts from the second semester — a strong model for what a thorough,
+    well-written student submission looks like. 20 questions, all with clear questions, distinct choices,
+    and helpful hints.</p>
+
+    <div class="code-section">
+      <div class="code-header">
+        <span class="code-label">Leen's CONFIG Object</span>
+        <span class="code-lang">JavaScript</span>
+      </div>
+      <div class="code-body"><span class="kw">const</span> CONFIG = {
+  <span class="prop">title</span>:      <span class="str">"Leen's 25-26 Review Application"</span>,
+  <span class="prop">subtitle</span>:   <span class="str">"My Awesome Questions and Answers"</span>,
+  <span class="prop">teacher</span>:    <span class="str">"Mr. G-Swizzle"</span>,
+  <span class="prop">subject</span>:    <span class="str">"Blue Valley 229  |  CS"</span>,
+  <span class="prop">storageKey</span>: <span class="str">"bv229_room_v1"</span>
+};</div>
+    </div>
+
+    <h3>Leen's 20 Questions — Topic Map</h3>
+    <table class="room-table">
+      <thead>
+        <tr><th>Room</th><th>Room Name</th><th>JavaScript Concept</th><th>Answer</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="rn">#1</td><td class="room-name">Sphero Direction</td><td>Compass bearing on a Sphero robot (0° = East)</td><td>East (index 2)</td></tr>
+        <tr><td class="rn">#2</td><td class="room-name">Data Type Den</td><td>Identifying a String data type from <code>"Hello, World!"</code></td><td>String (index 2)</td></tr>
+        <tr><td class="rn">#3</td><td class="room-name">Console Chamber</td><td>What <code>console.log()</code> does</td><td>Prints to console (index 1)</td></tr>
+        <tr><td class="rn">#4</td><td class="room-name">Boolean Bay</td><td>Identifying a real Boolean value (not string, not number)</td><td><code>true</code> (index 2)</td></tr>
+        <tr><td class="rn">#5</td><td class="room-name">Operator Outpost</td><td>What + does between two strings (concatenation)</td><td>Connects them (index 1)</td></tr>
+        <tr><td class="rn">#6</td><td class="room-name">Strict Security</td><td>What <code>===</code> (triple equals) checks</td><td>Value AND type (index 2)</td></tr>
+        <tr><td class="rn">#7</td><td class="room-name">Template Terminal</td><td>Character for template literal strings (backtick)</td><td>Backtick ` (index 2)</td></tr>
+        <tr><td class="rn">#8</td><td class="room-name">Condition Control Room</td><td>When the <code>else</code> block executes</td><td>When if is false (index 2)</td></tr>
+        <tr><td class="rn">#9</td><td class="room-name">Function Factory</td><td>Keyword to declare a named function</td><td><code>function</code> (index 1)</td></tr>
+        <tr><td class="rn">#10</td><td class="room-name">Parameter Passage</td><td>What a parameter is in a function definition</td><td>Placeholder variable (index 1)</td></tr>
+        <tr><td class="rn">#11</td><td class="room-name">Return Route</td><td>What the <code>return</code> statement does</td><td>Sends value back (index 2)</td></tr>
+        <tr><td class="rn">#12</td><td class="room-name">Array Archive</td><td>Correct syntax to create an empty array</td><td><code>let arr = []</code> (index 2)</td></tr>
+        <tr><td class="rn">#13</td><td class="room-name">Index Intelligence</td><td>Index of the FIRST item in an array</td><td>0 (index 2)</td></tr>
+        <tr><td class="rn">#14</td><td class="room-name">Method Mission</td><td>Array method to add an item to the END</td><td><code>.push()</code> (index 1)</td></tr>
+        <tr><td class="rn">#15</td><td class="room-name">Loop Lab Alpha</td><td>What the middle part (condition) of a for loop controls</td><td>Whether to keep running (index 2)</td></tr>
+        <tr><td class="rn">#16</td><td class="room-name">Loop Lab Beta</td><td>Which loop type for unknown repeat count</td><td>while loop (index 2)</td></tr>
+        <tr><td class="rn">#17</td><td class="room-name">Object Observatory</td><td>Correct syntax for a JavaScript object</td><td>Curly braces (index 1)</td></tr>
+        <tr><td class="rn">#18</td><td class="room-name">Property Plaza</td><td>How to access a property using dot notation</td><td><code>player.score</code> (index 2)</td></tr>
+        <tr><td class="rn">#19</td><td class="room-name">Comment Corner</td><td>Single-line comment syntax in JavaScript</td><td><code>//</code> (index 3)</td></tr>
+        <tr><td class="rn">#20</td><td class="room-name">DOM Discovery</td><td>What DOM stands for</td><td>Document Object Model (index 1)</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout success">
+      <div class="callout-icon">⭐</div>
+      <div class="callout-content">
+        <div class="callout-title">What Makes This a Strong Submission</div>
+        <p>Leen's questions have clear, consistent structure. Each room name matches the concept being tested.
+        The distractors (wrong answers) are plausible but not trick answers. Hints guide toward the right answer
+        without giving it away. The coverage is comprehensive — data types, operators, functions, arrays, loops,
+        objects, and DOM all represented. This is the model to show students.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       CODE EDUCATION: CSS DESIGN SYSTEM
+       ══════════════════════════════════════════════ -->
+  <section class="section" id="code-design-system">
+    <div class="section-header">
+      <div class="section-icon">🎨</div>
+      <div>
+        <div class="section-title">Code Education: CSS Design System</div>
+        <div class="section-desc">How the visual theme works — the :root variables</div>
+      </div>
+    </div>
+
+    <p>Every escape room opens with a <code>:root</code> block in the CSS. This is the "design system" —
+    it defines every color, glow effect, and spacing value as a variable. Using variables instead of
+    hard-coded colors means the entire visual theme can be changed by editing just this one block.</p>
+
+    <div class="code-section">
+      <div class="code-header">
+        <span class="code-label">CyberPunk :root Design Tokens</span>
+        <span class="code-lang">CSS</span>
+      </div>
+      <div class="code-body"><span class="prop">:root</span> {
+  <span class="cmt">/* ── Background Colors ── */</span>
+  <span class="prop">--bg</span>:        <span class="val">#060912</span>;           <span class="cmt">/* Page background — near-black with blue tint */</span>
+  <span class="prop">--bg-card</span>:   <span class="val">rgba(10, 22, 44, 0.97)</span>; <span class="cmt">/* Card/panel background */</span>
+  <span class="prop">--border</span>:    <span class="val">rgba(0, 220, 255, 0.18)</span>;<span class="cmt">/* Semi-transparent cyan border */</span>
+
+  <span class="cmt">/* ── Accent Colors ── */</span>
+  <span class="prop">--cyan</span>:      <span class="val">#00dcff</span>;           <span class="cmt">/* Primary cyan — buttons, borders */</span>
+  <span class="prop">--cyan-hi</span>:   <span class="val">#70efff</span>;           <span class="cmt">/* High-brightness cyan — titles */</span>
+  <span class="prop">--amber</span>:     <span class="val">#ffb700</span>;           <span class="cmt">/* Warning/hint color — room badges */</span>
+  <span class="prop">--green</span>:     <span class="val">#00ff88</span>;           <span class="cmt">/* Correct answer / success */</span>
+  <span class="prop">--red</span>:       <span class="val">#ff3860</span>;           <span class="cmt">/* Wrong answer / danger */</span>
+
+  <span class="cmt">/* ── Text Colors ── */</span>
+  <span class="prop">--text</span>:      <span class="val">#b8d0e8</span>;           <span class="cmt">/* Body text — light blue-gray */</span>
+  <span class="prop">--text-hi</span>:   <span class="val">#e8f4ff</span>;           <span class="cmt">/* Emphasized text — near-white */</span>
+  <span class="prop">--text-dim</span>:  <span class="val">#4a6a8a</span>;           <span class="cmt">/* Dimmed text — labels, captions */</span>
+
+  <span class="cmt">/* ── Glow Effects (CSS box-shadow values) ── */</span>
+  <span class="prop">--glow-c</span>:    <span class="val">0 0 18px rgba(0,220,255,0.35)</span>;   <span class="cmt">/* Cyan glow */</span>
+  <span class="prop">--glow-g</span>:    <span class="val">0 0 18px rgba(0,255,136,0.4)</span>;    <span class="cmt">/* Green glow */</span>
+  <span class="prop">--glow-r</span>:    <span class="val">0 0 18px rgba(255,56,96,0.4)</span>;    <span class="cmt">/* Red glow */</span>
+  <span class="prop">--glow-a</span>:    <span class="val">0 0 18px rgba(255,183,0,0.4)</span>;    <span class="cmt">/* Amber glow */</span>
+}</div>
+    </div>
+
+    <table class="lbl-table">
+      <tr><td class="lcode">--bg</td><td class="lexpl">The darkest color — the page background. The hex code <code>#060912</code> is not pure black; it has a tiny amount of blue mixed in to feel like a dark computer screen.</td></tr>
+      <tr><td class="lcode">rgba(..., 0.18)</td><td class="lexpl">RGBA means Red, Green, Blue, Alpha. The fourth number (0.18) is opacity — 0 = invisible, 1 = solid. This gives semi-transparent borders that feel like a glowing edge, not a solid wall.</td></tr>
+      <tr><td class="lcode">--glow-c</td><td class="lexpl">This is a <code>box-shadow</code> value, not a color. It creates the glowing halo effect around buttons. The <code>0 0 18px</code> means: 0 horizontal offset, 0 vertical offset, 18px blur radius.</td></tr>
+      <tr><td class="lcode">var(--cyan)</td><td class="lexpl">To <em>use</em> a variable in CSS, wrap it in <code>var()</code>. For example: <code>color: var(--cyan);</code> sets the text color to the cyan value defined in :root.</td></tr>
+    </table>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       CODE EDUCATION: SCREEN ARCHITECTURE
+       ══════════════════════════════════════════════ -->
+  <section class="section" id="code-screens">
+    <div class="section-header">
+      <div class="section-icon">🖥️</div>
+      <div>
+        <div class="section-title">Code Education: Screen Architecture</div>
+        <div class="section-desc">How four screens work in one HTML page</div>
+      </div>
+    </div>
+
+    <p>The entire game lives on one HTML page, but users see it as four different "screens." This works
+    because of a CSS rule that hides all screens by default, and JavaScript that adds the <code>.active</code>
+    class to whichever screen should be visible.</p>
+
+    <div class="code-section">
+      <div class="code-header">
+        <span class="code-label">CSS — The Screen Visibility Rules</span>
+        <span class="code-lang">CSS</span>
+      </div>
+      <div class="code-body"><span class="cmt">/* All screens are hidden by default */</span>
+.screen { <span class="prop">display</span>: <span class="val">none</span>; }
+
+<span class="cmt">/* The .active screen is shown with a fade-slide animation */</span>
+.screen.<span class="fn">active</span> {
+  <span class="prop">display</span>: <span class="val">flex</span>;
+  <span class="prop">flex-direction</span>: <span class="val">column</span>;
+  <span class="prop">animation</span>: <span class="val">screenIn 0.38s ease</span>;
+}
+
+<span class="cmt">/* Animation: fade in from 18px below */</span>
+<span class="kw">@keyframes</span> screenIn {
+  <span class="kw">from</span> { opacity: <span class="num">0</span>; transform: translateY(<span class="num">18px</span>); }
+  <span class="kw">to</span>   { opacity: <span class="num">1</span>; transform: translateY(<span class="num">0</span>); }
+}</div>
+    </div>
+
+    <div class="code-section">
+      <div class="code-header">
+        <span class="code-label">JavaScript — showScreen() Function</span>
+        <span class="code-lang">JavaScript</span>
+      </div>
+      <div class="code-body"><span class="kw">function</span> <span class="fn">showScreen</span>(name) {
+
+  <span class="cmt">// Step 1: Remove .active from ALL screens (hide everything)</span>
+  document.<span class="fn">querySelectorAll</span>(<span class="str">'.screen'</span>).<span class="fn">forEach</span>(s => s.classList.<span class="fn">remove</span>(<span class="str">'active'</span>));
+
+  <span class="cmt">// Step 2: Find the screen whose id matches 'screen-' + the name we want</span>
+  <span class="kw">const</span> el = document.<span class="fn">getElementById</span>(<span class="str">'screen-'</span> + name);
+  <span class="kw">if</span> (!el) <span class="kw">return</span>;
+
+  <span class="cmt">// Step 3: Force the animation to restart (trick: remove, reflow, restore)</span>
+  el.style.animation = <span class="str">''</span>;
+  el.offsetHeight;          <span class="cmt">// ← accessing offsetHeight forces browser to "re-read" the layout</span>
+  el.style.animation = <span class="str">''</span>;
+
+  <span class="cmt">// Step 4: Add .active to show this screen</span>
+  el.classList.<span class="fn">add</span>(<span class="str">'active'</span>);
+
+  <span class="cmt">// Step 5: Show/hide the floating restart button</span>
+  document.<span class="fn">getElementById</span>(<span class="str">'fab-reset'</span>).style.display = (name === <span class="str">'question'</span>) ? <span class="str">'block'</span> : <span class="str">'none'</span>;
+}</div>
+    </div>
+
+    <table class="lbl-table">
+      <tr><td class="lcode">querySelectorAll('.screen')</td><td class="lexpl">Returns ALL elements with the class "screen" as a list. Then <code>.forEach()</code> loops through each one and removes the .active class — hiding them all.</td></tr>
+      <tr><td class="lcode">getElementById('screen-' + name)</td><td class="lexpl">Builds the element ID by combining "screen-" with the name argument. So <code>showScreen('splash')</code> looks for the element with id <code>screen-splash</code>.</td></tr>
+      <tr><td class="lcode">el.offsetHeight</td><td class="lexpl">This is a browser quirk: reading <code>offsetHeight</code> forces the browser to re-calculate the page layout, which allows CSS animations to restart correctly.</td></tr>
+      <tr><td class="lcode">? 'block' : 'none'</td><td class="lexpl">This is a <strong>ternary operator</strong> — a shorthand for if/else. It means: "if name equals 'question', use 'block'; otherwise use 'none'."</td></tr>
+    </table>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       CODE EDUCATION: CONFIG OBJECT
+       ══════════════════════════════════════════════ -->
+  <section class="section" id="code-config">
+    <div class="section-header">
+      <div class="section-icon">⚙️</div>
+      <div>
+        <div class="section-title">Code Education: The CONFIG Object</div>
+        <div class="section-desc">A JavaScript object as a settings panel</div>
+      </div>
+    </div>
+
+    <p>The <code>CONFIG</code> constant is a JavaScript object used as a settings panel. Instead of
+    hard-coding the title in the HTML and in five different JavaScript locations, it's stored once here
+    and referenced everywhere. Changing the title in CONFIG changes it on every screen automatically.</p>
+
+    <div class="code-section">
+      <div class="code-header">
+        <span class="code-label">How CONFIG is used at boot time</span>
+        <span class="code-lang">JavaScript</span>
+      </div>
+      <div class="code-body"><span class="cmt">/* ── These lines run immediately when the page loads ── */</span>
+
+<span class="cmt">// Sets the browser tab title</span>
+document.<span class="fn">getElementById</span>(<span class="str">'doc-title'</span>).textContent = CONFIG.title;
+
+<span class="cmt">// Sets the big title on the splash screen</span>
+document.<span class="fn">getElementById</span>(<span class="str">'spl-title'</span>).textContent  = CONFIG.title;
+
+<span class="cmt">// Sets the subtitle / topic line</span>
+document.<span class="fn">getElementById</span>(<span class="str">'spl-sub'</span>).textContent    = CONFIG.subtitle;
+
+<span class="cmt">// Sets the "teacher · subject" credit line at the bottom of splash</span>
+document.<span class="fn">getElementById</span>(<span class="str">'spl-credit'</span>).textContent = CONFIG.teacher + <span class="str">'  ·  '</span> + CONFIG.subject;</div>
+    </div>
+
+    <p>Notice the pattern: <code>document.getElementById('id-here')</code> finds an HTML element by its
+    <code>id</code> attribute, and <code>.textContent = ...</code> replaces whatever text is already inside it.
+    This is the most fundamental DOM manipulation in the entire file.</p>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       CODE EDUCATION: QUESTIONS ARRAY
+       ══════════════════════════════════════════════ -->
+  <section class="section" id="code-questions">
+    <div class="section-header">
+      <div class="section-icon">❓</div>
+      <div>
+        <div class="section-title">Code Education: The QUESTIONS Array</div>
+        <div class="section-desc">An array of objects — the game's data structure</div>
+      </div>
+    </div>
+
+    <p>The <code>QUESTIONS</code> constant is an array of objects. Each object represents one room.
+    This is the most important data structure in the file — everything the game displays and checks
+    comes from reading this array.</p>
+
+    <div class="code-section">
+      <div class="code-header">
+        <span class="code-label">How Questions are Read and Displayed</span>
+        <span class="code-lang">JavaScript</span>
+      </div>
+      <div class="code-body"><span class="kw">function</span> <span class="fn">showQuestion</span>(idx) {
+  S.currentQ      = idx;          <span class="cmt">// Save which question we're on</span>
+  S.wrongAttempts = <span class="num">0</span>;          <span class="cmt">// Reset wrong guesses to 0</span>
+
+  <span class="kw">const</span> q = QUESTIONS[idx];       <span class="cmt">// Get the question object at index idx</span>
+
+  <span class="cmt">// Update counter display: "1 / 20", "2 / 20", etc.</span>
+  document.<span class="fn">getElementById</span>(<span class="str">'q-count'</span>).textContent = (idx + <span class="num">1</span>) + <span class="str">' / '</span> + QUESTIONS.length;
+
+  <span class="cmt">// Show room badge: "Room 3 — Boolean Bay"</span>
+  document.<span class="fn">getElementById</span>(<span class="str">'room-badge'</span>).textContent = <span class="str">'Room '</span> + (idx + <span class="num">1</span>) + <span class="str">' — '</span> + q.room;
+
+  <span class="cmt">// Display the question text</span>
+  document.<span class="fn">getElementById</span>(<span class="str">'q-text'</span>).textContent = q.question;
+
+  <span class="cmt">// Build choice buttons dynamically</span>
+  <span class="kw">const</span> cont = document.<span class="fn">getElementById</span>(<span class="str">'choices'</span>);
+  cont.innerHTML = <span class="str">''</span>;                            <span class="cmt">// Clear any previous buttons</span>
+
+  <span class="kw">const</span> LETTERS = [<span class="str">'A'</span>,<span class="str">'B'</span>,<span class="str">'C'</span>,<span class="str">'D'</span>,<span class="str">'E'</span>];
+
+  q.choices.<span class="fn">forEach</span>((choice, i) => {             <span class="cmt">// Loop through each choice</span>
+    <span class="kw">const</span> btn = document.<span class="fn">createElement</span>(<span class="str">'button'</span>); <span class="cmt">// Create a new button element</span>
+    btn.className = <span class="str">'choice-btn'</span>;
+    btn.id = <span class="str">'c'</span> + i;                            <span class="cmt">// ID: c0, c1, c2, c3</span>
+    btn.innerHTML = <span class="str">'&lt;span class="letter"&gt;'</span> + LETTERS[i] + <span class="str">'&lt;/span&gt;&lt;span&gt;'</span> + choice + <span class="str">'&lt;/span&gt;'</span>;
+    btn.onclick = () => <span class="fn">pick</span>(i);                 <span class="cmt">// When clicked, call pick() with this index</span>
+    cont.<span class="fn">appendChild</span>(btn);                       <span class="cmt">// Add button to the page</span>
+  });
+}</div>
+    </div>
+
+    <table class="lbl-table">
+      <tr><td class="lcode">QUESTIONS[idx]</td><td class="lexpl">Square bracket notation reads one item from an array by its position number (index). <code>QUESTIONS[0]</code> is the first question, <code>QUESTIONS[19]</code> is the last of 20.</td></tr>
+      <tr><td class="lcode">QUESTIONS.length</td><td class="lexpl"><code>.length</code> is a built-in array property that returns how many items are in it. If there are 20 questions, <code>QUESTIONS.length</code> equals 20. This means the counter label "1 / 20" works even if the teacher changes to 15 or 25 questions.</td></tr>
+      <tr><td class="lcode">q.choices.forEach()</td><td class="lexpl">Loops through each answer choice string in the choices array for this question. The arrow function receives each item as <code>choice</code> and its position as <code>i</code>.</td></tr>
+      <tr><td class="lcode">document.createElement('button')</td><td class="lexpl">Creates a brand-new HTML button element in memory. It doesn't appear on screen until you use <code>appendChild()</code> to add it to an existing element.</td></tr>
+      <tr><td class="lcode">btn.onclick = () => pick(i)</td><td class="lexpl">Attaches a click event handler. The arrow function <code>() =&gt; pick(i)</code> means "when this button is clicked, call the pick() function with this choice's index number."</td></tr>
+    </table>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       CODE EDUCATION: STATE MANAGEMENT
+       ══════════════════════════════════════════════ -->
+  <section class="section" id="code-state">
+    <div class="section-header">
+      <div class="section-icon">🗃️</div>
+      <div>
+        <div class="section-title">Code Education: State Management</div>
+        <div class="section-desc">How the game remembers what's happening</div>
+      </div>
+    </div>
+
+    <p>The <code>let S = {...}</code> object is the "state" — a snapshot of everything happening in the game
+    at any given moment. Every meaningful piece of information is stored here, and every function reads from
+    or writes to this object. It's the source of truth.</p>
+
+    <div class="code-section">
+      <div class="code-header">
+        <span class="code-label">The Complete State Object</span>
+        <span class="code-lang">JavaScript</span>
+      </div>
+      <div class="code-body"><span class="kw">let</span> S = {
+  <span class="prop">phase</span>:        <span class="str">'splash'</span>,             <span class="cmt">// Which screen: 'splash' | 'codename' | 'question' | 'results'</span>
+  <span class="prop">codename</span>:     <span class="str">''</span>,                  <span class="cmt">// The student's chosen agent name</span>
+  <span class="prop">currentQ</span>:     <span class="num">0</span>,                   <span class="cmt">// Index of the current question (0–19 for 20 questions)</span>
+  <span class="prop">results</span>:      Array(QUESTIONS.length).<span class="fn">fill</span>(<span class="kw">null</span>), <span class="cmt">// null | 'correct' | 'skipped' per question</span>
+  <span class="prop">firstTry</span>:     Array(QUESTIONS.length).<span class="fn">fill</span>(<span class="kw">null</span>), <span class="cmt">// null | true | false per question</span>
+  <span class="prop">wrongAttempts</span>: <span class="num">0</span>,                  <span class="cmt">// Wrong guesses on the CURRENT question</span>
+  <span class="prop">startTime</span>:    <span class="kw">null</span>,                <span class="cmt">// Date.now() timestamp when mission started</span>
+  <span class="prop">endTime</span>:      <span class="kw">null</span>                 <span class="cmt">// Date.now() timestamp when results screen shown</span>
+};</div>
+    </div>
+
+    <table class="lbl-table">
+      <tr><td class="lcode">Array(20).fill(null)</td><td class="lexpl">Creates an array of exactly 20 items, all set to <code>null</code>. This pre-allocates space for tracking each question's result before any answers are given.</td></tr>
+      <tr><td class="lcode">results[idx] = 'correct'</td><td class="lexpl">When a question is answered correctly, the results array at that position changes from <code>null</code> to the string <code>'correct'</code>. This is how the progress bar and results grid know what to show.</td></tr>
+      <tr><td class="lcode">wrongAttempts</td><td class="lexpl">Resets to 0 every time a new question is loaded. Increments by 1 on every wrong guess. When it reaches 2, the Skip button appears.</td></tr>
+      <tr><td class="lcode">startTime / endTime</td><td class="lexpl"><code>Date.now()</code> returns the current time in milliseconds since January 1, 1970. Subtracting startTime from endTime gives total elapsed milliseconds, which <code>fmtTime()</code> converts to "2m 34s" format.</td></tr>
+    </table>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       CODE EDUCATION: CORE FUNCTIONS
+       ══════════════════════════════════════════════ -->
+  <section class="section" id="code-functions">
+    <div class="section-header">
+      <div class="section-icon">🔧</div>
+      <div>
+        <div class="section-title">Code Education: Core Functions</div>
+        <div class="section-desc">pick(), onCorrect(), onWrong(), skipQ() — the game logic</div>
+      </div>
+    </div>
+
+    <h3>pick() — The Answer Handler</h3>
+    <div class="code-section">
+      <div class="code-header">
+        <span class="code-label">pick() — Called When a Student Clicks Any Choice</span>
+        <span class="code-lang">JavaScript</span>
+      </div>
+      <div class="code-body"><span class="kw">function</span> <span class="fn">pick</span>(choiceIdx) {
+  <span class="kw">const</span> q    = QUESTIONS[S.currentQ];  <span class="cmt">// Get the current question</span>
+  <span class="kw">const</span> btns = document.<span class="fn">querySelectorAll</span>(<span class="str">'.choice-btn'</span>);
+
+  <span class="cmt">// Immediately disable ALL buttons (prevents double-clicking)</span>
+  btns.<span class="fn">forEach</span>(b => { b.disabled = <span class="kw">true</span>; });
+
+  <span class="cmt">// Was the clicked choice the correct answer?</span>
+  <span class="kw">if</span> (choiceIdx === q.answer) {
+    <span class="fn">onCorrect</span>(choiceIdx);              <span class="cmt">// Yes → celebrate and advance</span>
+  } <span class="kw">else</span> {
+    <span class="fn">onWrong</span>(choiceIdx, btns);          <span class="cmt">// No  → show hint, re-enable choices</span>
+  }
+}</div>
+    </div>
+
+    <p>The key insight here: <code>choiceIdx === q.answer</code> uses triple-equals (strict equality) to
+    compare the index of the button clicked against the <code>answer</code> number stored in the question object.
+    If they match, the student chose correctly.</p>
+
+    <div class="divider"></div>
+
+    <h3>onCorrect() and onWrong()</h3>
+    <div class="code-section">
+      <div class="code-header">
+        <span class="code-label">onCorrect() — Celebrate and Advance</span>
+        <span class="code-lang">JavaScript</span>
+      </div>
+      <div class="code-body"><span class="kw">function</span> <span class="fn">onCorrect</span>(ci) {
+  <span class="kw">const</span> idx = S.currentQ;
+
+  S.results[idx]  = <span class="str">'correct'</span>;               <span class="cmt">// Record this question as correct</span>
+  S.firstTry[idx] = (S.wrongAttempts === <span class="num">0</span>); <span class="cmt">// Was it first try? true/false</span>
+
+  document.<span class="fn">getElementById</span>(<span class="str">'c'</span> + ci).classList.<span class="fn">add</span>(<span class="str">'correct'</span>); <span class="cmt">// Green highlight</span>
+  document.<span class="fn">getElementById</span>(<span class="str">'ok-box'</span>).className = <span class="str">'fb fb-ok show'</span>; <span class="cmt">// Show ✓ banner</span>
+  document.<span class="fn">getElementById</span>(<span class="str">'seg'</span> + idx).className = <span class="str">'p-seg unlocked'</span>; <span class="cmt">// Green bar</span>
+
+  <span class="cmt">// Flash the whole screen green briefly</span>
+  <span class="kw">const</span> fl = document.<span class="fn">getElementById</span>(<span class="str">'flash'</span>);
+  fl.classList.<span class="fn">add</span>(<span class="str">'on'</span>);
+  <span class="fn">setTimeout</span>(() => fl.classList.<span class="fn">remove</span>(<span class="str">'on'</span>), <span class="num">280</span>);
+
+  <span class="fn">saveState</span>();  <span class="cmt">// Persist to localStorage immediately</span>
+
+  <span class="cmt">// After 1.55 seconds, go to next question or show results</span>
+  <span class="fn">setTimeout</span>(() => {
+    <span class="kw">const</span> next = idx + <span class="num">1</span>;
+    <span class="kw">if</span> (next < QUESTIONS.length) <span class="fn">showQuestion</span>(next);
+    <span class="kw">else</span> <span class="fn">showResults</span>();
+  }, <span class="num">1550</span>);
+}</div>
+    </div>
+
+    <div class="code-section">
+      <div class="code-header">
+        <span class="code-label">onWrong() — Give Feedback and Re-Enable</span>
+        <span class="code-lang">JavaScript</span>
+      </div>
+      <div class="code-body"><span class="kw">function</span> <span class="fn">onWrong</span>(ci, btns) {
+  S.wrongAttempts++;  <span class="cmt">// Count this wrong attempt</span>
+
+  document.<span class="fn">getElementById</span>(<span class="str">'c'</span> + ci).classList.<span class="fn">add</span>(<span class="str">'wrong'</span>); <span class="cmt">// Red shake animation</span>
+
+  <span class="cmt">// Show the hint with a 💡 prefix</span>
+  <span class="kw">const</span> hb = document.<span class="fn">getElementById</span>(<span class="str">'hint-box'</span>);
+  hb.textContent = <span class="str">'💡  Hint: '</span> + QUESTIONS[S.currentQ].hint;
+  hb.className   = <span class="str">'fb fb-hint show'</span>;
+
+  <span class="cmt">// After 480ms: re-enable buttons and clear the red color</span>
+  <span class="fn">setTimeout</span>(() => {
+    btns.<span class="fn">forEach</span>(b => { b.disabled = <span class="kw">false</span>; b.classList.<span class="fn">remove</span>(<span class="str">'wrong'</span>); });
+  }, <span class="num">480</span>);
+
+  <span class="cmt">// If 2+ wrong guesses on this question, reveal the Skip button</span>
+  <span class="kw">if</span> (S.wrongAttempts >= <span class="num">2</span>) {
+    document.<span class="fn">getElementById</span>(<span class="str">'skip-btn'</span>).style.display = <span class="str">'block'</span>;
+  }
+}</div>
+    </div>
+
+    <table class="lbl-table">
+      <tr><td class="lcode">classList.add('correct')</td><td class="lexpl">Adds the CSS class "correct" to the button element. This triggers the green highlight styles defined in the CSS for <code>.choice-btn.correct</code>.</td></tr>
+      <tr><td class="lcode">setTimeout(() => ..., 1550)</td><td class="lexpl">Runs the arrow function after 1550 milliseconds (1.55 seconds). This gives students time to see the correct flash before the next question loads automatically.</td></tr>
+      <tr><td class="lcode">S.wrongAttempts++</td><td class="lexpl">The <code>++</code> operator increments a number by 1. This is shorthand for <code>S.wrongAttempts = S.wrongAttempts + 1</code>.</td></tr>
+      <tr><td class="lcode">S.wrongAttempts >= 2</td><td class="lexpl"><code>&gt;=</code> means "greater than or equal to." The Skip button only appears when a student has missed a question at least twice — giving them a chance to figure it out first.</td></tr>
+    </table>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       CODE EDUCATION: LOCALSTORAGE
+       ══════════════════════════════════════════════ -->
+  <section class="section" id="code-localstorage">
+    <div class="section-header">
+      <div class="section-icon">💾</div>
+      <div>
+        <div class="section-title">Code Education: localStorage</div>
+        <div class="section-desc">How progress is saved between page refreshes</div>
+      </div>
+    </div>
+
+    <p>The browser has a built-in storage system called <code>localStorage</code> that lets a web page
+    save data that persists even after the tab is closed. The escape room uses this to let students
+    resume where they left off, even days later on the same computer.</p>
+
+    <div class="code-section">
+      <div class="code-header">
+        <span class="code-label">The Three Storage Functions</span>
+        <span class="code-lang">JavaScript</span>
+      </div>
+      <div class="code-body"><span class="cmt">// ── SAVE: Convert the state object to a string and store it ──</span>
+<span class="kw">function</span> <span class="fn">saveState</span>() {
+  <span class="kw">try</span> {
+    localStorage.<span class="fn">setItem</span>(CONFIG.storageKey, JSON.<span class="fn">stringify</span>(S));
+  } <span class="kw">catch</span>(e) {}        <span class="cmt">// Silent fail (some browsers block localStorage)</span>
+}
+
+<span class="cmt">// ── LOAD: Read the string back and convert it to an object ──</span>
+<span class="kw">function</span> <span class="fn">loadState</span>() {
+  <span class="kw">try</span> {
+    <span class="kw">const</span> r = localStorage.<span class="fn">getItem</span>(CONFIG.storageKey);
+    <span class="kw">return</span> r ? JSON.<span class="fn">parse</span>(r) : <span class="kw">null</span>;  <span class="cmt">// If r exists, parse it; else return null</span>
+  } <span class="kw">catch</span>(e) { <span class="kw">return</span> <span class="kw">null</span>; }
+}
+
+<span class="cmt">// ── CLEAR: Delete the saved data (used on Restart) ──</span>
+<span class="kw">function</span> <span class="fn">clearState</span>() {
+  <span class="kw">try</span> { localStorage.<span class="fn">removeItem</span>(CONFIG.storageKey); } <span class="kw">catch</span>(e) {}
+}</div>
+    </div>
+
+    <table class="lbl-table">
+      <tr><td class="lcode">JSON.stringify(S)</td><td class="lexpl">JavaScript objects can't be stored directly — they must be converted to a text string first. <code>JSON.stringify()</code> converts the entire state object into a JSON string like <code>'{"phase":"question","currentQ":5,...}'</code>.</td></tr>
+      <tr><td class="lcode">localStorage.setItem(key, value)</td><td class="lexpl">Stores a string in the browser under the given key. Each student (each different <code>storageKey</code> in CONFIG) gets their own separate saved data slot.</td></tr>
+      <tr><td class="lcode">JSON.parse(r)</td><td class="lexpl">The reverse of stringify — converts the JSON text string back into a real JavaScript object that the code can use.</td></tr>
+      <tr><td class="lcode">r ? ... : null</td><td class="lexpl">Ternary: "if r has a value (is not null/empty), parse and return it; otherwise return null." This handles the case where no saved data exists yet (brand new player).</td></tr>
+      <tr><td class="lcode">try { } catch(e) { }</td><td class="lexpl">A try/catch block prevents the game from crashing if localStorage is blocked (some school networks or incognito modes disable it). The code tries the operation; if it fails for any reason, it silently moves on.</td></tr>
+    </table>
+  </section>
+
+  <!-- ══════════════════════════════════════════════
+       CODE EDUCATION: HOW TO CUSTOMIZE
+       ══════════════════════════════════════════════ -->
+  <section class="section" id="code-customize">
+    <div class="section-header">
+      <div class="section-icon">✏️</div>
+      <div>
+        <div class="section-title">How to Customize — Quick Reference</div>
+        <div class="section-desc">What to change, where to change it, and what NOT to touch</div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <div class="annotation green">
+          <div class="ann-label">✅ Safe to Change</div>
+          <ul>
+            <li>All values inside the <code>CONFIG</code> object (strings in quotes)</li>
+            <li>All question content in the <code>QUESTIONS</code> array</li>
+            <li>The number of questions (add/remove objects from the array — the game auto-adapts)</li>
+            <li>Color variables in <code>:root</code> to change the theme</li>
+            <li>The game title in the HTML <code>&lt;title&gt;</code> tag</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="annotation amber">
+          <div class="ann-label">⚠️ Leave Alone</div>
+          <ul>
+            <li>The <code>&lt;style&gt;</code> block (unless changing colors only)</li>
+            <li>All HTML element IDs (the JS uses these to find elements)</li>
+            <li>Any code below the "END OF CONFIGURATION ZONE" comment</li>
+            <li>The <code>let S = {...}</code> structure</li>
+            <li>All function definitions</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <h3>Changing the Color Theme</h3>
+    <p>To change from CyberPunk cyan to a green theme (like CODE://LOCKED), update these four variables in <code>:root</code>:</p>
+
+    <div class="code-section">
+      <div class="code-header">
+        <span class="code-label">Theme Color Swap — Cyan to Green</span>
+        <span class="code-lang">CSS</span>
+      </div>
+      <div class="code-body"><span class="cmt">/* CyberPunk (cyan) → Green Terminal theme */</span>
+
+<span class="cmt">/* BEFORE */</span>
+<span class="prop">--cyan</span>:      <span class="val">#00dcff</span>;
+<span class="prop">--cyan-hi</span>:   <span class="val">#70efff</span>;
+<span class="prop">--glow-c</span>:    <span class="val">0 0 18px rgba(0,220,255,0.35)</span>;
+<span class="prop">--border</span>:    <span class="val">rgba(0, 220, 255, 0.18)</span>;
+
+<span class="cmt">/* AFTER */</span>
+<span class="prop">--cyan</span>:      <span class="val">#00ff88</span>;                           <span class="cmt">/* Green replaces cyan */</span>
+<span class="prop">--cyan-hi</span>:   <span class="val">#66ffaa</span>;
+<span class="prop">--glow-c</span>:    <span class="val">0 0 18px rgba(0,255,136,0.4)</span>;
+<span class="prop">--border</span>:    <span class="val">rgba(0, 255, 136, 0.18)</span>;</div>
+    </div>
+
+    <h3>Changing the Number of Questions</h3>
+    <p>The game uses <code>QUESTIONS.length</code> everywhere instead of a hard-coded 20. Simply add or remove
+    question objects from the array and the counter, progress bar, and results grid all adapt automatically.
+    The badges on the splash screen ("20 Rooms") are the only thing to manually update in the HTML.</p>
+
+    <div class="callout success">
+      <div class="callout-icon">🏁</div>
+      <div class="callout-content">
+        <div class="callout-title">Final Note: The storageKey</div>
+        <p>Every time a new version of an escape room is deployed — new questions, new theme, new year —
+        update the <code>storageKey</code> in CONFIG from <code>"bv229_room_v1"</code> to <code>"bv229_room_v2"</code>
+        (or any new unique string). This clears any old saved progress from previous versions so students
+        always start fresh on the new content.</p>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <p style="text-align:center; color: var(--text-dim); font-family: 'Orbitron', sans-serif; font-size: 0.7rem; letter-spacing: 0.2em; padding: 20px 0;">
+      MR. G'S MIDDLE SCHOOL CS PRODUCTIONS · BLUE VALLEY 229 · 2025–2026
+    </p>
+  </section>
+
+</main>
+
+<script>
+// Highlight active nav link based on scroll position
+const sections = document.querySelectorAll('section[id], div[id]');
+const navLinks  = document.querySelectorAll('.nav-link');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      navLinks.forEach(l => l.style.color = '');
+      const active = document.querySelector('.nav-link[href="#' + e.target.id + '"]');
+      if (active) active.style.color = 'var(--cyan-hi)';
+    }
+  });
+}, { threshold: 0.3 });
+
+sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
